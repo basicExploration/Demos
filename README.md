@@ -1,0 +1,2 @@
+# goFiles
+go examples
