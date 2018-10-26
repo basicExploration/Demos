@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>CoastRoad 考研社区</title>
+        <script async="async" >
+            (()=> {
+                setTimeout(()=>{
+                    location.href="/"
+                },5000)
+            })()
+        </script>
+    </head>
+    <body>
+<h1>将在5秒后返回主<a href="/">Home</a></h1>
+
+<h1>
+    ThomasHuke就是🐂 😁 。
+</h1>
+
+<h1>显示的内容是</h1>
+用户名是：{{.username}}
+<hr/>
+密码是: {{.password}}
+</hr>
+{{range $nu,$in := .interesting}}
+最喜欢的公司有
+<li>第{{$nu}}个：{{$in}}</li>
+<br/>
+{{end}}
+最爱的apple笔记本是:{{.type}}
+    </body>
+</html>

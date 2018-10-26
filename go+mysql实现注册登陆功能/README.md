@@ -1,0 +1,6 @@
+CREATE TABLE `userinfo`(
+  `uid INT(10) NOT NULL AUTO_INCERMENT`,
+  `username` VARCHAR(64) NULL DEFAULT NULL,
+  `password` VARCHAR(64) NULL DEFAULT NULL,
+  PRIMARY KEY (`uid`)
+)

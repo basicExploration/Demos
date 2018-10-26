@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<form>
+    <input type="text" placeholder="plese write your username" id="input">
+</form>
+
+</body>
+<script>
+    let input = document.getElementById("input")
+
+    if (localStorage.getItem("above")){
+        input.value = localStorage.getItem("above")
+        console.log("开始赋值")
+    }
+
+    input.addEventListener("input",()=>{
+        localStorage.setItem("above",input.value)
+        console.log("发生了变化")
+    })
+</script>
+</html>
+
+<!-- 可以实现输入然后关闭窗口然后再次打开还有的那种效果 -->
