@@ -8,6 +8,7 @@ import (
 
 func main() {
 	start := time.Now()
+	// 测试 尾递归调用 4000k ! 是极限值。
 	a := testWEI(100, 0)
 	end := time.Now()
 	fmt.Println("花费了多久：", end.Sub(start), a)
