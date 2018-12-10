@@ -1,0 +1,4 @@
+*.idea
+*.mod
+*.sum
+.DS_Store
