@@ -34,7 +34,6 @@ func commaBuffer(s []byte)string {
 		return string(s)
 	}
 	for _, v := range s {
-
 		buf.WriteByte(v)
 		if b == 2 {
 			buf.WriteByte(',')
