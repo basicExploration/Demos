@@ -18,6 +18,8 @@ func TestEathOther(t *testing.T) {
 	}
 }
 
+
+
 //go test
 //PASS
 //ok  	github.com/googege/gopl_homework/ch3/第三章练习题/练习3.12	0.008s
