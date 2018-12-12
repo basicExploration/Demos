@@ -15,7 +15,7 @@ func main() {
 
 }
 
-//!+
+//!+ 速度慢是因为递归。
 // comma inserts commas in a non-negative decimal integer string.
 func comma(s string) string {
 	n := len(s)
