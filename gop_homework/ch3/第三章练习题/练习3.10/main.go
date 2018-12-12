@@ -10,7 +10,7 @@ func main() {
 	t := []string{"111", "2222277777"}
 	for i := 0; i < len(t); i++ {
 		fmt.Printf("  %s\n", comma(t[i]))
-		fmt.Println("2:::",commaBuffer([]byte(t[i])))
+		fmt.Println("2:::", commaBuffer([]byte(t[i])))
 	}
 
 }
@@ -26,10 +26,10 @@ func comma(s string) string {
 
 }
 
-func commaBuffer(s []byte)string {
+func commaBuffer(s []byte) string {
 	var buf bytes.Buffer
 	b := 0
-	if len(s) <=3 {
+	if len(s) <= 3 {
 		fmt.Println(string(s))
 		return string(s)
 	}
@@ -44,4 +44,3 @@ func commaBuffer(s []byte)string {
 	return buf.String()
 
 }
-
