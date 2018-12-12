@@ -6,6 +6,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 )
 
 func wordfreq() {
@@ -16,15 +17,26 @@ func wordfreq() {
 	input.Split(bufio.ScanWords)
 	for input.Scan() {
 		testMao[input.Text()]++
-		//fmt.Println(testMao)
 	}
-	for k,v := range testMao {
-		fmt.Println(len(testMao))
-		fmt.Printf("%s: %% %.3f",k,float32(v*100/len(testMao)))
-	}
+	paixu(testMao)
+	//for k, v := range testMao {
+	//	fmt.Println(len(testMao))
+	//	fmt.Printf("%s: %% %.3f", k, float32(v*100/len(testMao)))
+	//}
 
 }
 
 func main() {
 	wordfreq()
+}
+
+func paixu(sr map[string]int) {
+	result := make([]int, 0)
+	for _,v := range sr {
+		result = append(result, v)
+	}
+	sort.Ints(result)
+	for _, v := range result {
+		fmt.Println(v)
+	}
 }
