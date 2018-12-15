@@ -9,11 +9,34 @@ import (
 	"net/http"
 )
 
+var content map[string][]byte
+
 func main() {
-	res, err := http.Get("https://xkcd.com/571/info.0.json")
-	fmt.Println(err)
-	data, err := ioutil.ReadAll(res.Body)
-	fmt.Println(err)
-	fmt.Println(string(data))
-	res.Body.Close()
+	fujian := ""
+	content := make(map[string][]byte)
+	str := new(string)
+	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
+		*str = request.FormValue("str")
+		writer.Write([]byte("dd"))
+	})
+	http.HandleFunc("/show", func(writer http.ResponseWriter, request *http.Request) {
+		if _, ok := content[*str]; !ok {
+			url := "https://xkcd.com/" + *str + "/info.0.json"
+			res, _ := http.Get(url)
+			date, _ := ioutil.ReadAll(res.Body)
+			content[*str] = date
+			fujian = "没有哦~~~"
+		} else {
+			fujian = "在本地数据库中有数据哦~"
+
+		}
+		copy(content[*str], []byte(fujian))
+		writer.Write(content[*str])
+	})
+	http.HandleFunc("/print", func(writer http.ResponseWriter, request *http.Request) {
+		for k := range content {
+			fmt.Println(k)
+		}
+	})
+	fmt.Println(http.ListenAndServe(":9090", nil))
 }
