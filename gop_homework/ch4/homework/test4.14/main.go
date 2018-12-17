@@ -13,19 +13,20 @@ import (
 )
 
 func main() {
+	var d http.Dir
 	gID := new(string)
 	HTMLTemplate := []string{
 		"1.2.html",
 		"2.html",
 	}
-	http.Handle("/static", http.FileServer(http.Dir("./")))
+
 	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
 		t, err := template.ParseFiles(HTMLTemplate...)
 		IsErr(err)
 		t.Execute(writer, nil)
 
 	})
-
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir(d))))
 	http.HandleFunc("/search", func(writer http.ResponseWriter, request *http.Request) {
 
 		if strings.ToUpper(request.Method) == "POST" {
