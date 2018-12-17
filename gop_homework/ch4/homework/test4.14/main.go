@@ -5,10 +5,13 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 func main() {
+	gID := new(string)
 	HTMLTemplate := []string{
 		"1.2.html",
 		"2.html",
@@ -17,6 +20,24 @@ func main() {
 		t, err := template.ParseFiles(HTMLTemplate...)
 		IsErr(err)
 		t.Execute(writer, "https://weibo.com/imgoogege")
+
+	})
+	http.HandleFunc("/search", func(writer http.ResponseWriter, request *http.Request) {
+
+		if strings.ToUpper(request.Method) == "POST"{
+			*gID = request.FormValue("gID")
+			fmt.Println(*gID)
+			http.Redirect(writer,request,"/search",304)
+		}else if strings.ToUpper(request.Method) == "GET" {
+			fmt.Println("https://api.github.com/users/"+*gID)
+			res,err := http.Get("https://api.github.com/users/"+*gID)
+			IsErr(err)
+			da,err := ioutil.ReadAll(res.Body)
+			IsErr(err)
+			fmt.Fprint(writer,string(da))
+			res.Body.Close()
+		}
+
 
 	})
 	http.ListenAndServe(":9090", nil)
