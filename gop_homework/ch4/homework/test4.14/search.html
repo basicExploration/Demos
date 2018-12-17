@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+    <title>{{.Name}}</title>
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+        }
+        body a {
+            text-decoration: none;
+            color: black;
+            text-decoration-color: red;
+          text-align: center;
+            text-decoration-line: underline;
+        }
+        body a:hover{
+            font-size: 2.1rem;
+            text-decoration:none;
+           color: deepskyblue;
+        }
+        .content{
+            margin: 1rem;
+            padding: 1rem;
+            border: black solid 3px;
+            font-size: 2rem;
+            text-align: center;
+            width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+        h1{
+            padding-top: 10px;
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+<h1 class="h1"><a href="/">HOME!</a></h1>
+<div class="content">
+
+    <h3>下面将展示搜索的信息：</h3>
+    <p>
+    <div style="margin-left: auto;margin-right: auto;width: 100%"><img src="{{.Avatar_url}}" width="80%"></div>
+        您搜索的用户id是{{.Id}}
+        <br>
+        他的用户名字是{{.Name}}
+        <br>
+        {{if .Email}}
+         您搜索的用户是有email的哦地址是 {{.Email}}
+        {{else}}
+        抱歉您搜索的用户暂时没有提供公共的邮箱
+        {{end}}
+        <br>
+        您搜索的用户家住🏠{{.Location}}
+    <hr>
+    {{.Bio}} 这是他的座右铭,如果你想找他这是他的blog：<a href="{{.Blog}}">{{.Blog}}</a>
+    <br>
+    这是他的公司<a href="https://github.com/{{.Company}}">{{.Company}}</a>
+    <br>
+    你想知道他有多少粉丝吗？😝 让我来告诉你把,他的粉丝数量是 {{.Followers}}，
+    {{if .Gravatar_id}}
+        对了这是他的
+        gravatar id
+        {{.Gravatar_id}}
+    {{else}}
+    {{end}}
+
+    </p>
+
+    <a href="{{.Html_url}}">
+        这是他的详细介绍
+    </a>
+</div>
+</body>
+</html>

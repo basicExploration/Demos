@@ -1,3 +1,104 @@
+<!Doctype html>
+<html>
+<head>
+    <title>
+        查找您的爱豆
+    </title>
+    <style>
+        body{
+            outline: none;
+            padding: 0px;
+            margin: 0px;
+        }
+        body a{
+            text-decoration: none;
+            color: black;
+        }
+        body a:hover{
+            color: gold;
+        }
+        .content{
+            margin: 1rem;
+            padding: 1rem;
+            border: black solid 3px;
+            font-size: 2rem;
+            text-align: center;
+            width: 70rem;
+            height:70rem ;
+            margin-left: auto;
+            margin-right: auto;
 
-<a href="{{.}}">dfdfdf</a>
-{{template "1"}}
+        }
+        h1{
+            text-decoration: none;
+            padding-top: 10px;
+            padding-left: 1rem;
+        }
+
+        input[type="submit"]#search_gID_submit{
+            line-height: 2rem;
+            color: red;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            background: black;
+            width: 5rem;
+            height: 2rem;
+           font-family: "Adobe Caslon Pro";
+            border-radius: 0.5rem;
+        }
+        input[type="submit"]#search_gID_submit:hover{
+            border-radius: 2rem;
+            color: red;
+            outline: none;
+            cursor: pointer;
+        }
+        input{
+            outline: none;
+        }
+        input[type="text"]#search_gID{
+            border:0rem;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            border: none;
+            font-weight: bolder;
+            text-align: center;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            -moz-appearance: none;
+            border-radius: 1rem ;
+            color: white;
+            background: black;
+            height: 0.1rem;
+            font-size: 1rem;
+            padding: 1.5rem;
+            width: 15rem;
+            /*outline: none;*/
+
+
+        }
+        input[type="text"]#search_gID:focus{
+            border:0rem;
+            border-radius: 2rem;
+        }
+    </style>
+
+</head>
+<body>
+<div class="content">
+    <h1>
+        查找你想知道的Github爱豆❤️ 😘😘😘~
+    </h1>
+    {{template "1"}}
+    <p>
+        作者 <a href="https://github.com/googege">[Googege](https://github.com/googege)</a>
+        <br>
+        <a href="https://weibo.com/imgoogege">MY WEIBO</a>
+    </p>
+</div>
+</body>
+
+</html>
+
+
