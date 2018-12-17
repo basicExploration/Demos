@@ -54,7 +54,7 @@ func main() {
 		}
 
 	})
-	http.ListenAndServeTLS(":443","server.crt","server.key",nil)
+	http.ListenAndServeTLS(":443","./coastroad.net.crt","./coastroad.net.key",nil)
 }
 
 func IsErr(err error) {
