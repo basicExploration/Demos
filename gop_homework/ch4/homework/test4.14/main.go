@@ -18,6 +18,7 @@ func main() {
 		"1.2.html",
 		"2.html",
 	}
+	http.Handle("/static", http.FileServer(http.Dir("./")))
 	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
 		t, err := template.ParseFiles(HTMLTemplate...)
 		IsErr(err)
