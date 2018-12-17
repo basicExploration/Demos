@@ -52,7 +52,7 @@ func main() {
 		}
 
 	})
-	http.ListenAndServe(":80", nil)
+	http.ListenAndServeTLS(":80","server.crt","server.key",nil)
 }
 
 func IsErr(err error) {
