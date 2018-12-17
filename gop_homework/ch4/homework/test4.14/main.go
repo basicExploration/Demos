@@ -3,6 +3,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"io/ioutil"
@@ -33,8 +34,10 @@ func main() {
 			res,err := http.Get("https://api.github.com/users/"+*gID)
 			IsErr(err)
 			da,err := ioutil.ReadAll(res.Body)
+			t := new(Name)
+			json.Unmarshal(da,t)
 			IsErr(err)
-			fmt.Fprint(writer,string(da))
+			fmt.Fprint(writer,t.Name,t.Followers)
 			res.Body.Close()
 		}
 
@@ -48,4 +51,9 @@ func IsErr(err error) {
 	if err != nil {
 		fmt.Println(err)
 	}
+}
+
+type Name struct {
+	Name string `json:"name"`
+	Followers int `json:"followers"`
 }
