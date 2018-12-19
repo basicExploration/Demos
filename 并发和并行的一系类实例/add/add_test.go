@@ -27,3 +27,5 @@ func BenchmarkNadd(b *testing.B) {
 	}
 }
 
+
+// 只有这种数量级的时候才能战胜单线程。
