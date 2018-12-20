@@ -14,8 +14,6 @@ import (
 
 func main() {
 	var d http.Dir
-	var gID string
-	fmt.Println("测试前面，只会输出一次",&gID)
 	HTMLTemplate := []string{
 		"1.2.html",
 		"2.html",
@@ -31,18 +29,11 @@ func main() {
 	http.HandleFunc("/search", func(writer http.ResponseWriter, request *http.Request) {
 
 		if strings.ToUpper(request.Method) == "POST" {
-			gID = request.FormValue("gID")
-			fmt.Println("测试POST前面，会输出多次",&gID)
+			gID := request.FormValue("gID")
 			if gID ==""{
 				http.Redirect(writer, request, "/", http.StatusMovedPermanently)
 			}
-			http.Redirect(writer, request, "/search", http.StatusMovedPermanently)
-			// 这个地方原来是因为后面的那个code然后会有不同的方式。测试 301挺好用。
-			//由于该代码表示页面地址发生了较长久的改变，故Bing[9]和Google[10]等搜索引擎都推荐使用301重定向，以改变搜索引擎中的实际页面地址。
-
-		} else if strings.ToUpper(request.Method) == "GET" {
 			res, err := http.Get("https://api.github.com/users/" + gID)
-			fmt.Println("get测试，会输出多次",&gID)
 			IsErr(err)
 			da, err := ioutil.ReadAll(res.Body)
 			t := new(Name)
@@ -53,6 +44,12 @@ func main() {
 			IsErr(err)
 			template.Execute(writer, t)
 			res.Body.Close()
+			// 这个地方原来是因为后面的那个code然后会有不同的方式。测试 301挺好用。
+			//由于该代码表示页面地址发生了较长久的改变，故Bing[9]和Google[10]等搜索引擎都推荐使用301重定向，以改变搜索引擎中的实际页面地址。
+
+		} else if strings.ToUpper(request.Method) == "GET" {
+			http.Redirect(writer,request,"/",http.StatusMovedPermanently)
+			fmt.Println("发现违规操作--客户端直接get请求")
 		}
 
 	})
