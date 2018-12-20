@@ -1,42 +1,47 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
-	var a1 a = a{"12"}
-	t(a1)
+	start := time.Now()
+    bubbleSort(num)
+	end := time.Now()
 
+fmt.Println(end.Sub(start))
+	start1 := time.Now()
+	bubbleSort1(num)
+	end1 := time.Now()
+
+	fmt.Println(end1.Sub(start1))
 }
-
-// 试验 接口的断言
-
-type a struct {
-	value string
-}
-
-type ber interface {
-	get()
-}
-
-type cer interface {
-	post()
-}
-
-func (a1 a) get() {
-	fmt.Println(a1.value)
-}
-
-func (a1 a) post() {
-	fmt.Println(a1.value + "p")
-}
-
-func t(b1 ber){
-	type cer interface {// 这就是为了验证 已经实现了ber的变量是否也实现了cer
-		post()
+// 冒泡法的意思就是 把最大的或者是 最小的 往后挤压。就可以了 所以 他的 i 圈的循环次数一样。 j圈的循环次数也是一样的。
+func bubbleSort(num []int) {
+	for i := 0; i < len(num)-1; i++ {
+		for j := 0; j < len(num)-i-1; j++ {// 这是 前面大后面小的排列方法
+			if num[j]>num[j+1]{
+				num[j+1],num[j] = num[j],num[j+1]
+			}
+		}
 	}
-	if v, ok := b1.(cer); ok {
-		v.post()
-	}
-	b1.get()
-
 }
+
+func bubbleSort1(num []int) {
+	for i := 0; i < len(num)-1; i++ {
+		for j := 0; j < len(num)-i-1; j++ {// 这是 前面大后面小的排列方法
+			if num[j]<num[j+1]{
+				num[j+1],num[j] = num[j],num[j+1]
+			}
+		}
+	}
+}
+
+
+//func bubbleSortConcurrent(num []int) {
+//
+//}
+
+
+// 这种情况下 不合适 采用并发（行）
