@@ -2,19 +2,41 @@ package main
 
 import "fmt"
 
-func main(){
-	a := [3]int{1,2,3} //
-	b := 12
-	if true {
-		a[1] =3232323223 // 这就叫做直接改变，这和是不是指针没有关系，这就是针对自己的改变，因为这就是更改自己，并没有复制啊，所以这就是更改自己。
-		b = 233232 //这也是直接改变 其实就算是指针，那么指向的那个实体 它的改变也是这个，
-		// 何为变量就是指向的一个内存空间，那么如果这个内存空间的东西改变了不就是真实的改变了吗，
-		//所以b = 13312 就是真实的将这个空间真实的改变啊 又不牵涉到复制这个变量，所以指针啊 什么鬼的 这个问题不存在的。
-	}
-	fmt.Println(a,b)
+func main() {
+	var a1 a = a{"12"}
+	t(a1)
 
 }
 
+// 试验 接口的断言
 
+type a struct {
+	value string
+}
 
+type ber interface {
+	get()
+}
 
+type cer interface {
+	post()
+}
+
+func (a1 a) get() {
+	fmt.Println(a1.value)
+}
+
+func (a1 a) post() {
+	fmt.Println(a1.value + "p")
+}
+
+func t(b1 ber){
+	type cer interface {// 这就是为了验证 已经实现了ber的变量是否也实现了cer
+		post()
+	}
+	if v, ok := b1.(cer); ok {
+		v.post()
+	}
+	b1.get()
+
+}

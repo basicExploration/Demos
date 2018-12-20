@@ -339,10 +339,71 @@ dd()//dd里有panic
 
 ```
 
+11. 关于接口类型的断言
+  - 接口实例.(接口类型)
+  - 接口实例.(实际类型)
 
+但是这两个的前面 无一例外都需要传入实际的类型也就是变成了
+  - 实际类型的实例.(接口类型)
+  - 实际类型的实例.(实例类型)
 
+举个例子
+```go
+type a struct {
+  value string
+}
 
+type b interface {
+  get()
+}
+type c interface{
+  post()
+}
 
+func tt(b1 b){
+  // 第一种情况
+  if v,ok := b1.(b);ok {// 这个实例 相当于实现了这两个interface
+    fmt.println(v.post())
+    fmt.Println(v.get())
+  }
 
+  // 第二种情况
+  if v,ok := b1.(a);ok {
+    fmt.Println(v.get())
+  }
+}
+```
 
+```go
+type a struct {
+	value string
+}
 
+type ber interface {
+	get()
+}
+
+type cer interface {
+	post()
+}
+
+func (a1 a) get() {
+	fmt.Println(a1.value)
+}
+
+func (a1 a) post() {
+	fmt.Println(a1.value + "p")
+}
+
+func t(b1 ber){
+  // 这个内部的cer必不可少。
+	type cer interface {// 这就是为了验证 已经实现了ber的变量是否也实现了cer
+		post()
+	}
+	if v, ok := b1.(cer); ok {// 这个地方隐藏的说明了  a的实例是满足ber的，不然它这一步就会panic然后它还得满足cer不然还会panic所以这一步直接验证了两次。
+		v.post()
+	}
+	b1.get()
+
+}
+```
