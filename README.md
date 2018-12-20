@@ -217,7 +217,7 @@ ddc(b2)// 错误❌
 
 
 ```
-7 关于slice
+7. 关于slice
 
 slice赋值的时候可以不用指定类型
 
@@ -246,7 +246,7 @@ slice[1] = []int{
 ```
 因为 引用类型不初始化的话 本身就是nil 所以会panic
 
-8 关于变量的初始化
+8. 关于变量的初始化
 
 关于这个地方我也出错过
 
@@ -297,12 +297,12 @@ dd(t)
 }
 ```
 
-8 slice 关于他的len和cap
+8. slice 关于他的len和cap
 
 不要超过它的len来查找数据。(而不是cap)只要是超过了len就会报错，虽然没有超过cap
 但是它的out of range 错误是根据len来定的。
 
-9 不要获取map的值的地址
+9. 不要获取map的值的地址
 
 ```go
 t := make(map[string]string)
@@ -322,7 +322,7 @@ b := make([]int,12)
 
 ```
 
-10 recover的使用只能在 defer中使用(其它地方调用无效果)
+10. recover的使用只能在 defer中使用(其它地方调用无效果)
 
 ```go
 
