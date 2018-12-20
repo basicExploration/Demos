@@ -15,6 +15,7 @@ import (
 func main() {
 	var d http.Dir
 	var gID string
+	fmt.Println("测试前面，只会输出一次",&gID)
 	HTMLTemplate := []string{
 		"1.2.html",
 		"2.html",
@@ -31,7 +32,7 @@ func main() {
 
 		if strings.ToUpper(request.Method) == "POST" {
 			gID = request.FormValue("gID")
-			fmt.Println(gID)
+			fmt.Println("测试POST前面，会输出多次",&gID)
 			if gID ==""{
 				http.Redirect(writer, request, "/", http.StatusMovedPermanently)
 			}
@@ -41,6 +42,7 @@ func main() {
 
 		} else if strings.ToUpper(request.Method) == "GET" {
 			res, err := http.Get("https://api.github.com/users/" + gID)
+			fmt.Println("get测试，会输出多次",&gID)
 			IsErr(err)
 			da, err := ioutil.ReadAll(res.Body)
 			t := new(Name)
@@ -54,7 +56,7 @@ func main() {
 		}
 
 	})
-	http.ListenAndServeTLS(":443","./coastroad.net.crt","./coastroad.net.key",nil)
+	http.ListenAndServe(":9090",nil)
 }
 
 func IsErr(err error) {
