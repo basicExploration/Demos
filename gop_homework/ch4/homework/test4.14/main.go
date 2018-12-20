@@ -14,7 +14,7 @@ import (
 
 func main() {
 	var d http.Dir
-	gID := new(string)
+	var gID string
 	HTMLTemplate := []string{
 		"1.2.html",
 		"2.html",
@@ -30,9 +30,9 @@ func main() {
 	http.HandleFunc("/search", func(writer http.ResponseWriter, request *http.Request) {
 
 		if strings.ToUpper(request.Method) == "POST" {
-			*gID = request.FormValue("gID")
-			fmt.Println(*gID)
-			if *gID ==""{
+			gID = request.FormValue("gID")
+			fmt.Println(gID)
+			if gID ==""{
 				http.Redirect(writer, request, "/", http.StatusMovedPermanently)
 			}
 			http.Redirect(writer, request, "/search", http.StatusMovedPermanently)
@@ -40,7 +40,7 @@ func main() {
 			//由于该代码表示页面地址发生了较长久的改变，故Bing[9]和Google[10]等搜索引擎都推荐使用301重定向，以改变搜索引擎中的实际页面地址。
 
 		} else if strings.ToUpper(request.Method) == "GET" {
-			res, err := http.Get("https://api.github.com/users/" + *gID)
+			res, err := http.Get("https://api.github.com/users/" + gID)
 			IsErr(err)
 			da, err := ioutil.ReadAll(res.Body)
 			t := new(Name)
