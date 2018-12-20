@@ -322,6 +322,21 @@ b := make([]int,12)
 
 ```
 
+10 recover的使用只能在 defer中使用(其它地方调用无效果)
+
+```go
+
+func tt(){
+defer func(){
+if t := recover;t {
+    fmt.Print(t)
+}
+}
+dd()//dd里有panic
+}
+
+```
+
 
 
 
