@@ -53,7 +53,12 @@ func main() {
 		}
 
 	})
-	http.ListenAndServe(":9090",nil)
+	http.HandleFunc("/donate", func(writer http.ResponseWriter, request *http.Request) {
+		t, err := template.ParseFiles("./donate.html")
+		IsErr(err)
+		t.Execute(writer, nil)
+	})
+	http.ListenAndServeTLS(":443","./coastroad.net.crt","./coastroad.net.key",nil)
 }
 
 func IsErr(err error) {
