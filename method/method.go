@@ -27,6 +27,6 @@ type Human struct {
 func init() {
 	hu := Human{"dd", 17, 554.333}
 	//不初始化是没有值的
-	a:= hu.Run(12)//这里虽然并没有使用&hu但是系统会自动判定这个就是一个指针，系统会有这样的默认情况
+	a:= hu.Run(12)//这里虽然并没有使用&hu但是系统会自动取&
 	fmt.Print(a)
 }
