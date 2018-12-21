@@ -1,6 +1,6 @@
 # The Go Programming Language
 
-**每章的练习题都在每章的叫做 “练习题的那个文件夹，其它的跟官方的包一样，我主要是完成了练习题”**
+**每章的练习题都在每章的叫做 “练习题的那个文件夹，其它的跟官方的包一样，我主要是完成了练习题 后面几章我使用了 homework文件夹”**
 
 This repository provides the downloadable example programs
 for the book, "The Go Programming Language"; see http://www.gopl.io.
