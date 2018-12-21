@@ -9,20 +9,28 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"net/http"
 	"os"
+	"strings"
 
 	"golang.org/x/net/html"
 )
 
 func main() {
-	doc, err := html.Parse(os.Stdin)
+	reso,_ := http.Get("https://google.com")
+	s ,_ := ioutil.ReadAll(reso.Body)
+	r := strings.NewReader(string(s))
+
+	doc, err := html.Parse(r)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "findlinks1: %v\n", err)
 		os.Exit(1)
 	}
-	for _, link := range visit(nil, doc) {
-		fmt.Println(link)
-	}
+	fmt.Println(visit(nil,doc))
+	//for _, link := range visit(nil, doc) {
+	//	fmt.Println(link)
+	//}
 }
 
 //!-main
