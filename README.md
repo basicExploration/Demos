@@ -416,4 +416,37 @@ func t(b1 ber){
 真实的走向就是 从第一个栈 往下一直运行，直到可以跳出了，嗯然后就跳出来了。
 所以在最上层的数据是最少的，越往下数据的积累越多，（忘上返回什么鬼的不存在的，就是一溜烟往下走 走到头 然后返回出来就可以了）
 
-13.
+13. 关于 channel
+
+ chan 的机制是这样的，当一个没有缓存的（有缓存也是一样只是当缓存满了就一样了）chan，显示导入一个数据，这个时候
+ 这个发送chan的goruntine就睡眠了（阻塞）然后直到这个chan被接受（只要被接收就行，不管是不是在同样一个goruntine)然后这个数据就被获取了，然后开始唤醒这个chan的发送者的那个goruntine。如果没有后续的数据那么这个chan就应该被关闭了可以人工关闭(close)也可能被系统收回。
+
+看一个例子 这是一个有缓存的，并且利用缓存来限制 http请求数量的操作
+
+```go
+var st = make(chan struct{},20)// 将访问的数据限制在20
+var sy synv.WaitGroup
+func main(){
+  dd := []string{"htps://...",",,,,,",",,,"}
+  sy.Add(len(dd))
+  for _,v := range dd {
+
+      go read(dd)//
+  }
+
+sy.Wait()
+fmt.Println("执行完毕")
+}
+func read(st){
+  defer sy.Done()
+  st <- struct{}// 因为是有缓存的chan所以可以保证一直有20个gorutine是不阻塞的。
+  // 只要有一个goruntine不是阻塞的就不会造成死锁
+  rea(st)
+  <- st
+}
+func rea(st string){
+  res,err := http.Get(st)
+}
+```
+
+只要有一个goruntine不是阻塞的就不会造成死锁，死锁是程序想退出，但是chan内还有东西，没办法退出，但是又没办法运行，造成了无法结束的窘迫，最终就是各个goruntine都是阻塞然而又不能退出的局面。总之 死锁问题有必要再开一个文件来讨论一下。

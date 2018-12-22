@@ -16,13 +16,39 @@ import (
 )
 
 var sy sync.WaitGroup
+var st = make(chan struct{}, 21)
 
 func main() {
-	t6()
+	//t6()
+	t5()
+}
+func t5() {
+	resp, err := http.Get("http://www.haust.edu.cn")
+	if err != nil {
+		fmt.Println(err)
+	}
+	s, _ := ioutil.ReadAll(resp.Body)
+	resp.Body.Close()
+	re := strings.NewReader(string(s))
+	doc, err := html.Parse(re) // 将接受的html🌲进行解析。
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "findlinks1: %v\n", err)
+		os.Exit(1)
+	}
+
+	v := visit(nil, doc)
+	fmt.Println(v)
+	sy.Add(len(v))
+	for i := 0; i < len(v); i++ {
+		t := i
+		go read(v[t], t)
+	}
+	sy.Wait()
+	fmt.Println("j结束了")
 }
 func t6() {
 	var tt int
-	resp, err := http.Get("https://facebook.com")
+	resp, err := http.Get("http://www.haust.edu.cn")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -67,12 +93,14 @@ func visit(links []string, n *html.Node) []string {
 }
 
 func read(doc string, t int) {
+	st <- struct{}{} // 发送数据 发送完 然后 就阻塞次 goruntine 知道缓存里有token的位置
 	defer func() {
 		if re := recover(); re != nil {
 			fmt.Println(re)
 		}
 	}()
 	rea(doc, t)
+	<-st // 接受数据，此数据的接受发生在 唤醒沉睡着之前，不论是 发送chan的go gorun 还是接受的 只要没有了数据都是讲 此 goruntine阻塞。
 }
 func rea(doc string, t int) {
 	defer sy.Done()
@@ -81,13 +109,13 @@ func rea(doc string, t int) {
 	fmt.Println("creat err", err)
 	if strings.Index(doc, "https://") == -1 {
 		if strings.Index(doc, "http://") == -1 {
-			doc = "https://facebook.com" + doc
+			doc = "http://www.haust.edu.cn" + doc
 		}
 	}
 	res, err := http.Get(doc)
-if err != nil {
-	os.Remove("./d/"+s+".html")
-}
+	if err != nil {
+		os.Remove("./d/" + s + ".html")
+	}
 	defer res.Body.Close()
 	b, _ := ioutil.ReadAll(res.Body)
 	write := bufio.NewWriter(file)
