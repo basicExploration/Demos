@@ -4,6 +4,15 @@ package main
 
 // 使用重新定义handle 接口的方法来实现这个功能（参考 httprouter ),内部十有八九应该是使用了正则。
 
-func main() {
+import (
+	"github.com/julienschmidt/httprouter"
+	"net/http"
+)
 
+func main() {
+	router := httprouter.New()
+	router.GET("/:user/message", func(h http.ResponseWriter, r *http.Request, p httprouter.Params) {
+		h.Write([]byte(p.ByName("user")))
+	})
+	http.ListenAndServe(":9090",router)
 }

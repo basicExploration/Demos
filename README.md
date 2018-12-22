@@ -450,3 +450,27 @@ func rea(st string){
 ```
 
 只要有一个goruntine不是阻塞的就不会造成死锁，死锁是程序想退出，但是chan内还有东西，没办法退出，但是又没办法运行，造成了无法结束的窘迫，最终就是各个goruntine都是阻塞然而又不能退出的局面。总之 死锁问题有必要再开一个文件来讨论一下。
+
+14. 关于 type
+
+alias的类型和底层可以转化但是不是隐式是显式。
+
+这里分几个内容
+- 一就是
+
+```go
+type hand func(http....,http.....)
+
+// 例如
+
+httprouter.handle("/",httprouter.handle)
+// 这个时候就是
+httprouter.Handle("/",func(http....,http....))
+// 即可。
+```
+
+这种类型的尤其是在函数的调用的时候  要满足 一个hand类型也是很简单 就是函数满足后面那个样式即可
+
+- type hand string
+
+这种情况也是 函数满足后面的那个 type即可 也就是 是string即可 。
