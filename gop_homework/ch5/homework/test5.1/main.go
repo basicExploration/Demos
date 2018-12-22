@@ -10,13 +10,19 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"time"
 
 	"golang.org/x/net/html"
 )
-var sy sync.WaitGroup
-func main() {
 
-	resp, err := http.Get("http://www.haust.edu.cn")
+var sy sync.WaitGroup
+
+func main() {
+	t6()
+}
+func t6() {
+	var tt int
+	resp, err := http.Get("https://facebook.com")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -32,13 +38,18 @@ func main() {
 	v := visit(nil, doc)
 	fmt.Println(v)
 	sy.Add(len(v))
-	for i := 0;i < len(v) ;i++  {
+	for i := 0; i < len(v); i++ {
 		t := i
-		go read(v[t],t)
+		go read(v[t], t)
+		tt++
+		if tt == 30 {
+			tt = 0
+			time.Sleep(time.Second)
+		}
 
 	}
 	sy.Wait()
-fmt.Println("j结束了")
+	fmt.Println("j结束了")
 }
 
 func visit(links []string, n *html.Node) []string {
@@ -49,29 +60,41 @@ func visit(links []string, n *html.Node) []string {
 			}
 		}
 	}
-	for c := n.FirstChild; c != nil; c = c.NextSibling {//  这里 是c.nextSibling  不然 没办法往下走。
+	for c := n.FirstChild; c != nil; c = c.NextSibling { //  这里 是c.nextSibling  不然 没办法往下走。
 		links = visit(links, c)
 	}
 	return links
 }
 
-
-func read(doc string,t int) {
+func read(doc string, t int) {
+	defer func() {
+		if re := recover(); re != nil {
+			fmt.Println(re)
+		}
+	}()
+	rea(doc, t)
+}
+func rea(doc string, t int) {
 	defer sy.Done()
-	s := strconv.FormatInt(int64(t),10)
-	file,err:= os.Create("./d/"+s+".html")
-	fmt.Println("creat err",err)
-	if strings.Index(doc,"https://") == -1  {
-		if strings.Index(doc,"http://") == -1 {
-			doc = "https://coastroad.net" +doc
+	s := strconv.FormatInt(int64(t), 10)
+	file, err := os.Create("./d/" + s + ".html")
+	fmt.Println("creat err", err)
+	if strings.Index(doc, "https://") == -1 {
+		if strings.Index(doc, "http://") == -1 {
+			doc = "https://facebook.com" + doc
 		}
 	}
-	res,err := http.Get(doc)
-	fmt.Println(err)
+	res, err := http.Get(doc)
+if err != nil {
+	os.Remove("./d/"+s+".html")
+}
 	defer res.Body.Close()
-	b,_ := ioutil.ReadAll(res.Body)
+	b, _ := ioutil.ReadAll(res.Body)
 	write := bufio.NewWriter(file)
 	write.Write(b)
 	write.Flush()
 }
+
 //todo: 未解决并发 请求过多问题，明天解决。先睡觉
+
+//实现的想法：使用buffered的channel来解决这个问题。其实也就是使用
