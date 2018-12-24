@@ -8,27 +8,28 @@ import (
 )
 
 func main() {
+	data := make([]string,0)
 	d := "<p>fdsfds23434343</p><p>tt</p><p>dd</p><p>cc</p><script>-----====</script>"
 	read := strings.NewReader(string(d))
 	node, err := html.Parse(read)
 	if err != nil {
 		fmt.Println(err)
 	}
-	data := visit(nil, node)
-	fmt.Println(data, len(data))
+	visit(&data, node)
+	fmt.Println(data)
 }
 
-func visit(doc []string, n *html.Node) []string {
+func visit(doc *[]string, n *html.Node){
 	if n.Type == html.TextNode {
 		if n.Data != "style" && n.Data != "script" {
-			doc = append(doc, n.Data)
+			*doc = append(*doc, n.Data)// 这里的*doc就是原来的doc 所以它可以改变原来的值
 		}
 
 	}
 	for o := n.FirstChild; o != nil; o = o.NextSibling {
-		doc = visit(doc, o) // 这里必须有 doc原因是 doc扩容了
+		visit(doc, o) // 这里必须有 doc原因是 doc扩容了
 	}
-	return doc
+
 }
 
 //func testVisit(ii int) int {

@@ -10,12 +10,11 @@ func main(){
 	s = []string{
 		"1",
 	}
-	visit(s)
+	visit(&s)
 	fmt.Println(s)
 
 }
 
-func visit(s []string){
- s =append(s,"44334")
- fmt.Println(&s)
+func visit(s *[]string){
+ *s =append(*s,"44334")
 }
