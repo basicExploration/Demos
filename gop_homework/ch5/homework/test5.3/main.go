@@ -4,12 +4,17 @@ package main
 import (
 	"fmt"
 	"golang.org/x/net/html"
+	"regexp"
 	"strings"
 )
 
 func main() {
 	data := make([]string,0)
-	d := "<p>fdsfds23434343</p><p>tt</p><p>dd</p><p>cc</p><script>-----====</script>"
+	d := "<p>fdsfds23434343</p><p>tt</p><p>dd</p><p>cc</p><script>-----====</script><style>.a{dfdsfds}</style>"
+	re := regexp.MustCompile("<script>.+</script>")
+	d = re.ReplaceAllString(d,"")
+	re1 := regexp.MustCompile("<style>.+</style>")
+	d = re1.ReplaceAllString(d,"")
 	read := strings.NewReader(string(d))
 	node, err := html.Parse(read)
 	if err != nil {
