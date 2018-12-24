@@ -4,52 +4,39 @@ package main
 import (
 	"fmt"
 	"golang.org/x/net/html"
+	"strings"
 )
 
-var i = 0
-
 func main() {
-	//res, err := http.Get("https://www.facebook.com")
-	//if err != nil {
-	//	fmt.Println("打印main函数中的错误err", err)
-	//}
-	//d, err := ioutil.ReadAll(res.Body)
-	//if err != nil {
-	//	fmt.Println("err", err)
-	//}
-	//read := strings.NewReader(string(d))
-	//node, err := html.Parse(read)
-	//if err != nil {
-	//	fmt.Println(err)
-	//}
-	//data := visit(nil, node)
-	//fmt.Println(data)
-
-fmt.Println(testVisit(9))
+	d := "<p>fdsfds23434343</p><p>tt</p><p>dd</p><p>cc</p><script>-----====</script>"
+	read := strings.NewReader(string(d))
+	node, err := html.Parse(read)
+	if err != nil {
+		fmt.Println(err)
+	}
+	data := visit(nil, node)
+	fmt.Println(data, len(data))
 }
 
 func visit(doc []string, n *html.Node) []string {
 	if n.Type == html.TextNode {
-		for _, k := range n.Attr {
-			if n.Data == "script" || n.Data == "style" {
-				continue
-			}
-			doc = append(doc, k.Val)
+		if n.Data != "style" && n.Data != "script" {
+			doc = append(doc, n.Data)
 		}
+
 	}
-	i++
 	for o := n.FirstChild; o != nil; o = o.NextSibling {
-		doc = visit(doc, o)
+		doc = visit(doc, o) // 这里必须有 doc原因是 doc扩容了
 	}
 	return doc
 }
 
-func testVisit(ii int) int {
-	if ii == 0 {
-		return 100
-	}
-	fmt.Println(ii)
-	ii = testVisit(ii - 1)
-
-	return ii+1
-}
+//func testVisit(ii int) int {
+//	if ii == 0 {
+//		return 100
+//	}
+//	fmt.Println(ii)
+//	ii = testVisit(ii - 1)
+//
+//	return ii+1
+//}
