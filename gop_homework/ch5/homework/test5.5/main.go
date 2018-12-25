@@ -40,7 +40,7 @@ func CountWordsAndImagesAsync(url []string) {
 	for i := 0; i < len(url); i++ {
 		go func(i int) {
 			defer sy.Done()
-			defer func() {
+			defer func() {// !!!!!!!!!!!!!!!!
 				//如果是在外部获取recover可以说压根获取不了，想想也是知道的因为
 				// 你并不知道主协程和这个协程到底哪个运行到哪了，
 				// 所以要在这个协程中搞定这个panic
