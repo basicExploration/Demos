@@ -555,3 +555,42 @@ func tt1()int{
 ```
 
 原因也是很简单，首先如果是没有形参的返回值，都是在return后面直接返回的，然后再执行defer然后再执行 os.exit() 但是有形参的就不一样了，它必须返回它形参定义的参数之歌例子中就是t，那么t在哪最后一个出现呢？就是在defer中，所以它的执行过程就变成了，找寻最后出现的t（这里出现在defer中）然后直接执行os.exit() 因为它return后面没有东西，所以它和没有形参的return XXX 很不一样。
+17. 关于buffered
+
+我们在go的执行中经常使用的一种技巧就是限制go并发的速度，那么这个时候buffered变量就可以实现了它的实现是这样的 ` make(chan xxx,number)` 在get请求中一般我都会这么使用`make(chan struct{},20)` 我们定义了一个新的类型就是 struct{} 这个类型是代表了空，当然你也可以使用bool 都可以 struct{} 类型使用的时候 用 struct{}{} 即可。这就代表了这个chan中最多可以暂存number个数据，这就是所谓的缓存技术，也叫做 buffered数据
+
+18. 关于 recover和并发（多goruntine）
+
+如果是在go的多协程中的panic一定要在这个协程中recover否则在主协程的recover根本无法获取这个panic
+
+```go
+go func(i int) {
+			defer sy.Done()
+			defer func() { // 如果是在外部获取recover可以说压根获取不了，想想也是知道的因为你并不知道主协程和这个协程到底哪个运行到哪了，所以要在这个协程中搞定这个panic
+				if e := recover();e != nil {
+					fmt.Println(e)
+				}
+			}()
+			start := time.Now()
+			resp, err := http.Get(url[i])
+
+			if err != nil {
+				fmt.Println(err)
+			}
+			n, err := html.Parse(resp.Body)
+			if err != nil {
+				fmt.Println("err",err)
+				return
+			}
+			defer resp.Body.Close()
+			if err != nil {
+				fmt.Println(err)
+			}
+			wor, im := countWordsAndImagesAsync(nums, ch, n)
+			ma.Store(url[i]+"   num", wor)
+			ma.Store(url[i]+"   image", im)
+			end := time.Now()
+			timeS := end.Sub(start)
+			ma.Store(url[i]+"花费的时间是：",timeS.String())
+		}(i)
+```
