@@ -594,3 +594,19 @@ go func(i int) {
 			ma.Store(url[i]+"花费的时间是：",timeS.String())
 		}(i)
 ```
+19. 关于递归的出栈和进栈
+递归都有一个进出栈的过程，那么我们可以利用这个东西来完成一个小的技巧，例如整理div
+```go
+func a(){
+  visit(start,end)
+}
+func visit(start,end func()){
+start()//在进栈时执行的函数
+  for {
+    visit()
+  }
+  end()// 在出栈时执行的函数。这样一进一出就可以搞定div的排列。<div> 和 </div>
+}
+```
+
+[关于递归的出栈和进栈](./关于递归的出栈和进栈.md)

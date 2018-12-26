@@ -22,7 +22,6 @@ func main() {
 			fmt.Println("err错误信息:", err)
 		}
 	}
-
 }
 
 func outline(url string) error {
@@ -36,7 +35,6 @@ func outline(url string) error {
 		fmt.Println(err)
 	}
 	doc, err := html.Parse(resp.Body)
-	fmt.Println("dayin",doc)
 	if err != nil {
 		return err
 	}
@@ -47,10 +45,10 @@ func outline(url string) error {
 }
 
 func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
+
 	if pre != nil {
 		pre(n)
 	}
-
 	for c := n.FirstChild; c != nil; c = c.NextSibling { // 寻找孩子节点的。
 		forEachNode(c, pre, post)
 	}
@@ -58,6 +56,7 @@ func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
 	if post != nil {
 		post(n)
 	}
+	fmt.Println("deep",depth)
 }
 
 func startElement(n *html.Node) {
