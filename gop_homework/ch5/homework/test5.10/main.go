@@ -1,6 +1,7 @@
 //练习5.10： 重写topoSort函数，用map代替切片并移除对key的排序代码。验证结果的正确性（结果不唯一）。
 // 深度优先算法
 // 广度 优先算法
+//todo：未能解决问题。
 package main
 
 import (
@@ -13,7 +14,7 @@ import (
 func topoSort(m map[string][]string) []string {
 	var order []string
 	seen := make(map[string]bool)
-	var visitAll func(items []string)
+	var visitAll func([]string)
 	visitAll = func(items []string) {
 		for _, item := range items {
 			if !seen[item] { // 如果还没有定义过得 bool初始值是false
@@ -68,12 +69,11 @@ func crawl(url string) []string {
 
 func main() {
 	t := map[string][]string{
-		"1": {"1", "2", "3","332"},
+		"1": {"1", "2", "3", "332"},
 		"2": {"2", "23", "32", "554"},
 	}
 	fmt.Println(topoSort(t))
 }
-
 
 //func tt(){
 //
