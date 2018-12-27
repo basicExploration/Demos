@@ -12,11 +12,11 @@ import (
 var (
 	testI   int
 	depth   int
-	problem = []string{"tto", "cc"}
+	problem = []string{"tto", "cc","ttlpus"}
 )
 
 func main() {
-	s := "<p id='tto'>ddd<a>aaaaa</a></p><p id='cc'>cccc</p>"
+	s := "<p id='tto'>ddd<a>aaaaa<span id='ttlpus' placeholder='323'></span></a></p><p id='cc'>cccc</p>"
 	read := strings.NewReader(s)
 	doc, err := html.Parse(read)
 	if err != nil {

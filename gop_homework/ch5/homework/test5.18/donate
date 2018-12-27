@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>祝你天天好心情 😘</title>
+    <style>
+       .server {
+           text-align: center;
+            width: 1300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    .read{
+        text-align: center;
+        width: 1300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .server{
+        text-align: center;
+        width: 1300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .alipaly{
+        text-align: center;
+        width: 1300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+      img{
+           margin-left: auto;
+           margin-right: auto;
+           text-align: center;
+           display: block;
+           height: 20rem;
+
+       }
+    .wechat {
+        text-align: center;
+        width: 1300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+        a{
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div style="width: 1300px;margin-left: auto;margin-right: auto;text-align: left">
+    <div>
+        <a href="/" style="font-size: 2rem">HOME!</a>
+    </div>
+</div>
+<div class="alipaly">
+
+    <div>
+        <p style="width: 60%;text-align: center;margin-left: auto;margin-right: auto;line-height: 2.3rem">
+        <span style="font-size: 25px">好的作品离不开大家的支持，</span>
+            <br><span style="font-size: 20px">无奈人生还是需要支付账单，</span>
+            <br>
+            <span>如果您可以捐赠我一些钱财，我将非常感激!</span>
+            <br/>
+            <br>
+            另外除此之外您也可以扫一下我的<a href="#alipay-bao" style="color: red">支付宝红包</a>，这样你我双赢，何乐而不为之呢？😘
+            <br>
+            对了下面是我正在用的服务器地址，<a href="https://www.bilibili.com/video/av38630366">[点击这里]</a>将有详细的使用此网站的教程，
+            <br>
+            您可以点击在<a href="#lian">最下面的链接</a>注册此网站上面的服务器非常便宜，而且稳定，推荐大家使用。
+        </p>
+    </div>
+    支付宝扫码捐赠：
+
+    <br>
+    <img src="/static/alipay1.jpeg" id="img1"  >
+
+</div>
+<div class="wechat">
+    微信扫码捐赠：
+    <br>
+    <img src="/static/wechat.png" id="img1"  height="250rem">
+    <br>
+    <img src="/static/wechat1.png" id="img1"  height="300rem">
+
+</div>
+<div class="read" id="alipay-bao">
+    支付宝扫红包捐赠(感恩感恩😘)
+    <br>
+    <img src="/static/alipay.jpeg" id="img1"  height="300rem">
+
+</div>
+<div class="server" style="width: 60%">
+    <span style="font-size: 22px;color: deepskyblue">服务器推荐：</span>
+    <a href="https://app.cloudcone.com/?ref=2525" id="lian">CLOUDCONE</a>，我目前正在使用的科学服务器以及此网站托管的服务器，价格便宜速度稳定，值得推荐哦！
+    使用说明：
+    <a href="https://app.cloudcone.com/?ref=2525">点击此处进入服务器购买网站</a>
+</div>
+</body>
+</html>
