@@ -4,16 +4,16 @@
 //func CountingWriter(w io.Writer) (io.Writer, *int64)
 package main
 
-//func ContingWriter(w io.Writer) (io.Writer, *int64) {
-//
-//	return w,
-//}
+import (
+	"fmt"
+	"io"
+)
 
-func main(){
-
-}
-type tt []int
-
-func(w1 *tt)get(){
-
+func ContingWriter(w io.Writer, p []byte) (io.Writer, *int64) {
+	n, err := w.Write(p)
+	if err != nil {
+		fmt.Println(err)
+	}
+	a := int64(n)
+	return w, &a
 }
