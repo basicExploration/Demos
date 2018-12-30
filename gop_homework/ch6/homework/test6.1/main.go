@@ -5,3 +5,22 @@
 //func (*IntSet) Clear()        // remove all elements from the set
 //func (*IntSet) Copy() *IntSet // return a copy of the set
 package main
+
+type IntSet struct {
+	words []uint64 // bit 数组。
+}
+
+func (i *IntSet) Len() int {
+	return len(i.words)
+}
+
+func (i *IntSet) Remove(x int) {
+	i.words = append(i.words[:x], i.words[x+1:]...)
+}
+func (i *IntSet) Clear() {
+	i.words = make([]uint64, 0)
+}
+func (i *IntSet) Copy() *IntSet {
+	t := *i   // 取得实际值的复制值
+	return &t //然后把这个复制的值的地址给返回。
+}
