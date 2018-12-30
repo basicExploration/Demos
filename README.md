@@ -653,3 +653,13 @@ func t(t1 inter){
 // 这种还是很常见的一种函数内部设立 类型的方式。
 
 ```
+21. 只有接口和nil不能拥有方法。
+
+```go
+invalid receiver type io.Writer (io.Writer is an interface type) // 这是使用了接口的报错。
+
+nil is not a type// 这是使用了nil的报错
+```
+
+> ps: 永远不要去取接口的指针，没有丝毫的意义。如果取 slice的指针还有些许的意义(比如在append的时候)但是接口的指针有什么意义？
+接口本来就没有实际的意义它本来就是一个抽象的东西。而且它本来也就是引用对象。

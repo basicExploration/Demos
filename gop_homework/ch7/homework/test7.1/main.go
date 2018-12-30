@@ -29,10 +29,9 @@ func T() int {
 			break
 		}
 		if scan.Text() == "Q" {
-			goto D
+			break
 		}
 	}
-D:
 	//
 	return d
 }
