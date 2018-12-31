@@ -28,6 +28,7 @@ func (s sortValue) Len() int {
 // index i should sort before the element with index j.
 func (s sortValue) Less(i, j int) bool {
 	if len(s[i].lie) > len(s[j].lie) {
+
 		return true
 	}
 	return false
@@ -41,7 +42,19 @@ func (s sortValue) Swap(i, j int) {
 func main() {
 	a := sortValue{
 		&sortV{"433434343", "32"},
-		&sortV{"33", "323"},
+		&sortV{"434433232", "323"},
+		&sortV{"3434", "33"},
+		&sortV{"433434343", "32"},
+		&sortV{"3221324234578654323", "323"},
+		&sortV{"3434", "33"},
+		&sortV{"433434343", "32"},
+		&sortV{"33322432", "323"},
+		&sortV{"3434", "33"},
+		&sortV{"433434343", "32"},
+		&sortV{"334324", "323"},
+		&sortV{"3434", "33"},
+		&sortV{"433434343", "32"},
+		&sortV{"334432", "323"},
 		&sortV{"3434", "33"},
 	}
 	sort.Stable(a)
