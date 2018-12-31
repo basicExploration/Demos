@@ -15,7 +15,8 @@ type File struct {
 }
 
 func (r *File) Read(p []byte) (n int, err error) { // 返回写入的字节数和返回错误。
-	if r.i >= int64(len(r.s)) {// 一定要有EOF的判断否则使用其他读取reader的函数就会卡死。
+	if r.i >= int64(len(r.s)) { // r.i >= int64(len(r.s))的意思就是读取完了。那么返回0和EOF吧赶紧。
+		// 一定要有EOF的判断否则使用其他读取reader的函数就会卡死。
 		return 0, io.EOF
 	}
 	r.prevRune = -1
