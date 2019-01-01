@@ -8,3 +8,54 @@
 //$ TZ=Europe/London ./clock2 -port 8030 &
 //$ clockwall NewYork=localhost:8010 Tokyo=localhost:8020 London=localhost:8030
 package main
+
+import (
+	"io"
+	"log"
+	"net"
+	"time"
+)
+var city = map[string]string{
+	"9090":"beijing",
+	"9091":"dongjing",
+	"9092":"la",
+}
+
+func handleConn(c net.Conn,city string) {
+	defer c.Close()
+	for {
+		_, err := io.WriteString(c, city+time.Now().Format("15:04:05\n"))
+		if err != nil {
+			return // e.g., client disconnected
+		}
+		time.Sleep(1 * time.Second)
+	}
+}
+
+func Wall(port,city string) {
+	listener, err := net.Listen("tcp", "localhost:"+port)
+	if err != nil {
+		log.Fatal(err)
+	}
+	//!+
+	for {
+		conn, err := listener.Accept()
+		if err != nil {
+			log.Print(err) // e.g., connection aborted
+			continue
+		}
+		go handleConn(conn,city) // handle connections concurrently
+	}
+	//!-
+}
+
+func main() {
+tt([]string{"9090","9091","9092"})
+time.Sleep(time.Hour*100000000)
+}
+
+func tt(port[]string){
+	for _, v := range port {
+		go Wall(v,city[v])
+	}
+}

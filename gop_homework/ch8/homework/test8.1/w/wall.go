@@ -1,10 +1,3 @@
-// Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
-// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
-
-// See page 221.
-//!+
-
-// Netcat1 is a read-only TCP client.
 package main
 
 import (
@@ -12,11 +5,19 @@ import (
 	"log"
 	"net"
 	"os"
+	"sync"
+	"time"
 )
-
-
+var sy sync.WaitGroup
 func main() {
-	conn, err := net.Dial("tcp", "localhost:8000")
+	data := []string{"9090", "9091", "9092"}
+	for _, v := range data {
+		go Wall(v)
+	}
+time.Sleep(time.Hour*1000000)
+}
+func Wall(port string) {
+	conn, err := net.Dial("tcp", "localhost:"+port)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -29,5 +30,3 @@ func mustCopy(dst io.Writer, src io.Reader) {
 		log.Fatal(err)
 	}
 }
-
-//!-
