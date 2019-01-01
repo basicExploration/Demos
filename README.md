@@ -1,6 +1,6 @@
 # Files
-- [go语言demos](https://github.com/googege/godemo)
-- [go语言圣经以及其练习题](https://github.com/googege/gop_homework)
-- [go语言书籍📚](https://github.com/googege/books)
-- [SQL练习](https://github.com/googege/SQLTest)
-- [PureCss 练习](https://github.com/googege/PureCssTest)
+- [go语言demos](https://github.com/googege/goFiles/tree/master/godemo)
+- [go语言圣经以及其练习题](https://github.com/googege/goFiles/tree/master/gop_homework)
+- [go语言书籍📚](https://github.com/googege/goFiles/tree/master/books)
+- [SQL练习](https://github.com/googege/goFiles/tree/master/SQLTest)
+- [PureCss 练习](https://github.com/googege/goFiles/tree/master/PureCssTest)
