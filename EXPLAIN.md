@@ -25,17 +25,25 @@
 发现你所有的值全是通一个值举个例子
 ```go
 
-func tt(){
-for i :=0;i<9;i++{
-        defer dd(i)
-    }
-}
-func dd(i int){
+package main
 
-fm.Print(i)
+import "fmt"
+func main(){
+	tt()
+}
+func tt() {
+	var i int
+	for i := 0; i < 1; i++ {
+		dd(i)
+	}
+	i++
+}
+func dd(i int) {
+
+	fmt.Print(i)
 }
 ```
-这个函数执行的时候 tt中打印出来的都是9
+这个函数执行的时候 tt中打印出来的是0
 原因也是很简单，因为go在初始化的时候因为内部是defer并不会立即执行这个函数
 但是 但是 但是要注意一点 deder只是放在return后面执行 但是 它的参数同样是
 跟其它函数一样先 初始化 参数的（其它函数也是 先初始化参数然后再执行只是
@@ -53,23 +61,32 @@ fm.Print(i)
 
 ```go
 
-func tt(){
-var i = 0
-defer func(){
-fmt.print(i)
-i++
-}()
+package main
 
-return i
+import "fmt"
+
+func tt() int {
+	var i = 0
+	defer func() {
+		fmt.Println(i)
+		i++
+		fmt.Println(i)
+	}()
+
+	return i
 }
+
+func main() {
+	tt()
 }
+
 ```
 在这个函数中 执行顺序是这样的 首先先初始化 i  = 0
 然后 defer无法初始化（参数变量）因为它没有
 然后到了return  然后 直接执行了后面的内容 没错 什么都没有就是i而已
 然后 开始了return 直接将值返回了，这时候它没有结束 因为有defer
-所以开始执行了defer，然后defer中i是几？嗯 是1 因为这个时候i是1了
-然后 打印了1 i再次++ i等于2了，然而并没有什么机会去用这个i了，因为
+所以开始执行了defer，然后defer中i是几？嗯 是0 因为这个时候i是0了
+然后 打印了0 i再次++ i等于1了，然而并没有什么机会去用这个i了，因为
 已经return过了，所以这个i就被收回了，加入return后面是一个闭包，那么这个i
 就有用了，它就不会被收回。
 
@@ -120,8 +137,38 @@ func tt4() func() int {
 	i++
 	return func() int {
 
-		return i
+		return i// 引用变量。
 	}
+}
+--------
+package main
+
+import "fmt"
+// 0 1
+func tt5() (num int) {
+	defer func() {
+		fmt.Println("dd", num)
+		num++
+	}()
+	return // 使用这种形式 num始终都是一个，并且改变的是自己所以 返回的值是这个函数域内最后的在os.exit()前面的那个的最后的值，所以i的返回值在defer后运行所以是1
+
+}
+
+func main() {
+	fmt.Println(tt5())
+	fmt.Println(tt6())
+}
+
+func tt6() (num int) {
+	defer func(num int) {//// 使用这种形式 defer的函数内部的值已经是num的一个拷贝了，所以它里面怎么改变都不影响外部的return
+		fmt.Println("dd", num)
+		num++
+		num++
+		fmt.Println("dd1", num)
+	}(num)
+	num++
+	return
+
 }
 
 
@@ -162,7 +209,7 @@ i = 12
 fmt.Println(i)
 }
 ```
-我之前因为跟赋值搞混（因为没搞懂赋值有个隐藏的 d = i）所以我总是是用
+我之前因为跟赋值搞混所以我总是是用
 指针来更更改i其实是错误的理解，因为这个地方的i = 12 压根就没有赋值
 这一种说法它不过是更改自己的值而已，就像上面的那个函数即使使用指针，
 那么更改指针的实际值的时候也是这么干的，所以i = 12 只是这个参数的在
@@ -670,3 +717,103 @@ nil is not a type// 这是使用了nil的报错
 
 > ps: 永远不要去取接口的指针，没有丝毫的意义。如果取 slice的指针还有些许的意义(比如在append的时候)但是接口的指针有什么意义？
 接口本来就没有实际的意义它本来就是一个抽象的东西。而且它本来也就是引用对象。
+
+22 什么是参数的初始化
+
+```go
+
+package main
+
+import "fmt"
+// 0 1
+func tt5() (num int) {
+	defer func() {
+		fmt.Println("dd", num)
+		num++
+	}()
+	return // 使用这种形式 num始终都是一个，并且改变的是自己所以 返回的值是这个函数域内最后的在os.exit()前面的那个的最后的值，所以i的返回值在defer后运行所以是1
+
+}
+
+func main() {
+	fmt.Println(tt5())
+	fmt.Println(tt6())
+}
+
+func tt6() (num int) {
+	defer func(num int) {//// 使用这种形式 defer的函数内部的值已经是num的一个拷贝了，所以它里面怎么改变都不影响外部的return
+		fmt.Println("dd", num)
+		num++
+		num++
+		fmt.Println("dd1", num)
+	}(num)
+	num++
+	return
+
+}
+
+
+```
+
+这里就要看了，什么叫初始化，即便是defer或者是匿名函数 无论什么吧，主要是有参数的go都会实现将这个函数的参数给初始化了，然后
+函数到真正执行的时候就可以直接使用这个参数，那么为什么上面有两种结果，原因就是这里的num 是值的传递，如果改成指针，就没问题了
+
+```go
+
+
+// 133
+func tt6() (num *int) {
+	t := 0
+	num = &t
+	*num = 0
+	defer func(num *int) { //// 使用这种形式 defer的函数内部的值已经是num的一个拷贝了，所以它里面怎么改变都不影响外部的return
+		fmt.Println("dd", *num)
+		*num++
+		*num++
+		fmt.Println("dd1", *num)
+	}(num)
+	*num++
+	return
+
+}
+
+
+```
+
+这种形式跟
+
+```go
+// 133
+func tt6() (num int) {
+
+	defer func() { //// 使用这种形式 defer的函数内部的值已经是num的一个拷贝了，所以它里面怎么改变都不影响外部的return
+		fmt.Println("dd", num)
+		num++
+		num++
+		fmt.Println("dd1", num)
+	}()
+	num++
+	return
+
+}
+```
+
+其实是一种意思了。
+
+
+```go
+// 13 1
+func tt6() ( int) {
+num := 0
+	defer func() { //// 使用这种形式 defer的函数内部的值已经是num的一个拷贝了，所以它里面怎么改变都不影响外部的return
+		fmt.Println("dd", num)
+		num++
+		num++
+		fmt.Println("dd1", num)
+	}()
+	num++
+	return num
+
+}
+```
+像这种正常的函数返回 ，顺序上面说过， 先运行return后面的，然后这个时候就该返回值了（因为人家已经明确说了让你返回你还干啥）然后返回后，开始运行defer 然后defer运行后 就os.exit()就ok了。
