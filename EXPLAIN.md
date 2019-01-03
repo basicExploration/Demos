@@ -804,7 +804,7 @@ func tt6() (num int) {
 ```go
 // 13 1
 func tt6() ( int) {
-num := 0
+  num := 0
 	defer func() { //// 使用这种形式 defer的函数内部的值已经是num的一个拷贝了，所以它里面怎么改变都不影响外部的return
 		fmt.Println("dd", num)
 		num++
