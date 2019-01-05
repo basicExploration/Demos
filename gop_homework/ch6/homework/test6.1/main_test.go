@@ -11,7 +11,6 @@ func TestAll(t *testing.T) {
 			1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 		},
 	}
-
 	fmt.Println("开始测试len函数，正确答案应该是10")
 	fmt.Println(i.Len())
 	fmt.Println("Copy函数，正确答案应该是&{[]uint64{1,2,3,4,5,6,7,8,9,10,}}")
