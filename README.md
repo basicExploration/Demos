@@ -5,3 +5,4 @@
 - [go语言书籍📚](https://github.com/googege/goFiles/tree/master/books)
 - [SQL练习](https://github.com/googege/goFiles/tree/master/SQLTest)
 - [BootstrapTest 练习](https://github.com/googege/goFiles/tree/master/BootstrapTest)
+- [计算机里的小技巧](https://github.com/googege/goFiles/tree/master/computergold.md)
