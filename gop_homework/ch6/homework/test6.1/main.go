@@ -6,8 +6,6 @@
 //func (*IntSet) Copy() *IntSet // return a copy of the set
 package main
 
-import "fmt"
-
 type IntSet struct {
 	words []uint64 // bit 数组。
 }
@@ -28,12 +26,4 @@ func (i *IntSet) Clear() {
 func (i *IntSet) Copy() *IntSet {
 	t := *i   // 取得实际值的复制值
 	return &t //然后把这个复制的值的地址给返回。
-}
-
-func main() {
-	var i IntSet
-	fmt.Println(i.Copy())
-	i.Remove(1)
-	fmt.Println(i.Len())
-	i.Clear()
 }
