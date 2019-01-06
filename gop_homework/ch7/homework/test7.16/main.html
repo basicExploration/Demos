@@ -26,9 +26,9 @@
         fetch('/', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json', // 头一定不能少
             },
-            body: JSON.stringify({
+            body: JSON.stringify({ // 前端往后端传输数据果然还是json最好用。
                 one: document.getElementById("one").value,
                 two: document.getElementById("two").value,
                 fuhao:document.getElementById("fuhao").value,
@@ -39,8 +39,7 @@
     document.getElementById("shu").onclick = () => { // 请求数据使用get请求
         fetch('/s')
             .then(res => res.text()).then(b => {document.getElementById("ddd").innerText = b})
-            .catch(err =>{
-                console.log('parsing failed', ex)})
+            .catch(err =>{console.log('parsing failed', ex)})
     }
 
 </script>
