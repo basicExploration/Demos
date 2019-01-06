@@ -25,6 +25,10 @@ func main() {
 		}
 
 		if r.Method == "POST" {
+			var d  = new(string)
+			r.ParseForm()
+			r.Body.Read([]byte(*d))
+			fmt.Println("显示数据",*d)
 			one := r.FormValue("one")
 			o, _ := strconv.Atoi(one)
 			two := r.FormValue("two")
