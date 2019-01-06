@@ -10,7 +10,7 @@
         <input type="text" name="one" id="one">
         <input type="text" name="fuhao" value="fuhao" id="fuhao">
         <input type="text" name="two" id="two">
-        <input type="button" name="button" id="button" value="xianshi">
+        <input type="button" name="button" id="button" value="over">
     </form>
     <button id="shu">输出结果是:</button>
     {{/*{{.One}} {{.Fuhao}} {{.Two}} {{.Dengyu}}   {{.Resu}}*/}}
@@ -21,29 +21,26 @@
 </div>
 </body>
 <script>
-    document.getElementById("button").onclick = ()=> { // 发送数据使用post 貌似不能使用post来接受数据。
+    document.getElementById("button").onclick = ()=> {// 发送数据使用post 貌似不能使用post来接受数据。
+        console.log(document.getElementById("one").value)
         fetch('/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                one: document.getElementById("one").innerText,
-                two: document.getElementById("two").innerText,
-                fuhao:document.getElementById("fuhao").innerText,
-
+                one: document.getElementById("one").value,
+                two: document.getElementById("two").value,
+                fuhao:document.getElementById("fuhao").value,
+                dengyu:"=",
             })
         })
     }
     document.getElementById("shu").onclick = () => { // 请求数据使用get请求
-        fetch('/')
-            .then(function(response) {
-                return response.json()
-            }).then(function(json) {
-            document.getElementById("ddd").innerText = json
-        }).catch(function(ex) {
-            console.log('parsing failed', ex)
-        })
+        fetch('/s')
+            .then(res => res.text()).then(b => {document.getElementById("ddd").innerText = b})
+            .catch(err =>{
+                console.log('parsing failed', ex)})
     }
 
 </script>
