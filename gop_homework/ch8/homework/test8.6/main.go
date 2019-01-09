@@ -9,13 +9,13 @@ import (
 )
 
 var sy sync.WaitGroup
-
+var depth int
 func main() {
 
 	d := []string{
-		"<div>1<div>2<div>3</div></div></div>",
-		"<div>1<div>2<div>3</div></div></div>",
-		"<div>1<div>2<div>3</div></div></div>",
+		"<div>one!<div>two!<div>three!</div></div></div>",
+		"<div>one@<div>two@<div>three@</div></div></div>",
+		"<div>one#<div>two#<div>three#</div></div></div>",
 	}
 	sy.Add(len(d))
 	for _, k := range d {
@@ -27,25 +27,27 @@ func main() {
 
 func find(d string) {
 	defer sy.Done()
-	depth := 0
+
 	r := strings.NewReader(d)
 	node, err := html.Parse(r)
 	if err != nil {
 		fmt.Println(err)
 	}
-	dd(node, depth)
+	dd(node)
 
 }
 
-func dd(n *html.Node, depth int) {
-	depth++
-	fmt.Println(n.Data)
-	for i := n.FirstChild; i != nil; i = i.NextSibling {
-		dd(i, depth)
-	}
-	if depth > 3 {
-		fmt.Println("结束一个线程。")
-		return
+func dd(n *html.Node) {
+	if n.Type == html.TextNode {
+		depth++
+		fmt.Println(n.Data)
+		if depth > 0 {
+			fmt.Println("结束一个线程。")
+			return
 
+		}
+	}
+	for i := n.FirstChild; i != nil; i = i.NextSibling {
+		dd(i)
 	}
 }
