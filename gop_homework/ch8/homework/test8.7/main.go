@@ -20,7 +20,7 @@ var (
 )
 
 func main() {
-	re, err := http.Get("http://www.haust.edu.cn")
+	re, err := http.Get("https://www.harvard.edu/")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -55,23 +55,29 @@ func findTo(n []string) {
 	sy.Add(len(n))
 	don := make(chan struct{}, 20)
 	for k, v := range n {
-		go func() {
+		go func(v string,k int) {
+			fmt.Println("输出上层的v",v)
 			defer func() {
 				if e := recover(); e != nil {
 					fmt.Println(e)
 				}
 			}()
 			two(don, v,k) // 为了处理 panic
-		}()
+		}(v,k)
 	}
 }
 
 func two(don chan struct{}, v string,k int) {
 	don <- struct{}{} // 加入数据
 	defer sy.Done()
-	if !strings.HasPrefix(v,"http://") {
-		v = "http://coastroad.net" + v
+	if !strings.HasPrefix(v,"https")   {
+		if !strings.HasPrefix(v,"/") {
+			v =  v + "/"
+		}
+		v = "https://www.harvard.edu" + v
+
 	}
+	fmt.Println("打印v:",v)
 	resp, err := http.Get(v)
 	defer resp.Body.Close()
 	if err != nil {

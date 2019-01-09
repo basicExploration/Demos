@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js ie-8"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="2no-js no-jss" dir="ltr" lang="en" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:og="http://ogp.me/ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#"> <!--<![endif]--><head itemscope itemtype="http://schema.org/WebSite">
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TK7H6Z');</script>
+
+<meta charset="utf-8" /><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now()])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1099.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script>
+
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1" />
+<link rel="canonical" href="https://www.harvard.edu/about-harvard/maps-directions" itemprop="url" />
+
+<link rel="shortcut icon" type="image/ico" href="/sites/all/themes/hedu2015/assets/img/favicon.ico?v=2018" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<link rel="apple-touch-icon-precomposed" href="/sites/all/themes/hedu2015/assets/img/apple-touch-icon-144x144.png" />
+
+
+<meta name="msapplication-TileImage" content="/sites/all/themes/hedu2015/assets/img/apple-touch-icon-144x144.png" />
+<meta name="msapplication-TileColor" content="#222222" />
+<title itemprop="name">Maps &amp; Directions | Harvard University</title>
+<meta name="robots" content="index,follow,NOODP" />
+<meta name="description" Content="Directions to the Harvard University campus, including the medical school campus" />
+<meta name="keywords" Content="neighbors, community outreach, sustainable development" />
+<meta name="node_id" Content="644" />
+<meta property="fb:admins" content="593072576,599799799,662979311,613602264" />
+<meta property="fb:page_id" content="105930651606" />
+<meta property="fb:app_id" content="135898969862440" />
+<meta property="twitter:account_id" content="1491443782" />
+<meta name="twitter:site" content="@harvard">
+<meta name="twitter:creator" content="@harvard">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="Harvard University" />
+<meta property="og:type" content="university" />
+<meta property="og:title" content="Maps &amp; Directions | Harvard University" />
+<meta property="og:url" content="http://www.harvard.edu/about-harvard/maps-directions" />
+<meta property="og:description" content="Directions to the Harvard University campus, including the medical school campus" />
+<meta property="og:image" content="https://www.harvard.edu/sites/default/files/default_images/harvard-social1200.jpg" />
+
+<link rel="stylesheet" href="/sites/all/themes/hedu2015/assets/css/harvard.min.css?v=20180820" />
+
+<link href="/sites/all/themes/hedu2015/assets/css/print.css" rel="stylesheet" media="print" type="text/css" />
+<script async="true">
+      var fontCSS = '/sites/all/themes/hedu2015/assets/css/fonts.min.css';
+
+      (function() {
+        var wf = document.createElement('link');
+        wf.href = fontCSS;
+        wf.rel = 'stylesheet';
+
+        var s = document.getElementsByTagName('link')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+    </script>
+<noscript>
+      <link href="/sites/all/themes/hedu2015/assets/css/fonts.min.css" rel="stylesheet">
+    </noscript>
+<!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+      <link href="/sites/all/themes/hedu2015/assets/css/ie.min.css" rel="stylesheet">
+    <![endif]-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "CollegeOrUniversity",
+  "name": "Harvard",
+  "alternateName": "Harvard University",
+  "url": "http://www.harvard.edu",
+  "logo": "http://www.harvard.edu/sites/default/files/content/harvard-university-logo-151.png",
+  "sameAs": [
+		"https://www.facebook.com/Harvard",
+		"https://twitter.com/harvard",
+		"https://www.instagram.com/harvard/",
+		"https://www.youtube.com/harvard",
+		"https://soundcloud.com/harvard",
+		"https://www.linkedin.com/edu/school?id=18483"
+  ]
+}
+</script>
+</head>
+<body id="body" class="">
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TK7H6Z"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div id="page" class="page">
+
+<ul class="jump-links">
+<li>
+<a href="#mainArea" id="jumpToMain">
+Jump to main content
+</a>
+</li>
+<li>
+<a href="#searchArea" id="jumpToSearch">
+Jump to search
+</a>
+</li>
+<li>
+<a href="#footerArea">
+Jump to the footer
+</a>
+</li>
+</ul>
+
+<header role="banner" id="headerArea" class="header-base ">
+
+<h1 class="harvard-heading">
+<a href="/" class="harvard-heading__link">
+<span class="is-visually-hidden">
+Harvard University
+</span>
+</a>
+</h1>
+
+<a href="#siteNavigation" class="btn--menu" id="btn_menu" data-state="off" data-id="nav" aria-label="Reveal Navigation">
+<span class="btn--menu__icon"></span>
+Menu
+</a>
+<nav role="navigation" class="main-nav" id="siteNavigation">
+<div class="nav-drawer">
+<div class="nav-group nav-group--consistent">
+<ul class="clearfix">
+<li class="nav-left-half">
+<ul role="presentation" class="clearfix">
+<li class="has-drop-nav">
+<a href="/about-harvard" class="">
+About
+<span class="lg-nav-txt">
+Harvard
+</span>
+</a>
+<ul class="list--drop-nav">
+<li class="first"><a href="/about-harvard/harvard-glance" class="first">Harvard at a Glance</a></li>
+<li class=""><a href="/president" class="">Harvard's President</a></li>
+<li class=""><a href="/about-harvard/harvards-president-leadership" class="">Harvard's Leadership</a></li>
+<li class=""><a href="/about-harvard/academic-experience" class="">Academic Experience</a></li>
+<li class=""><a href="/about-harvard/administrative-offices" class="">Administrative Offices</a></li>
+<li class=""><a href="/about-harvard/directories" class="">Directories</a></li>
+<li class=""><a href="http://community.harvard.edu/" class="">Harvard in the Community</a></li>
+<li class=""><a href="http://news.harvard.edu/gazette/" class="">News</a></li>
+</ul>
+</li>
+<li class="has-drop-nav">
+<a href="/admissions-aid">
+Admissions
+<span class="lg-nav-txt">
+&amp; Aid
+</span>
+</a>
+<ul class="list--drop-nav">
+<li class="first"><a href="/admissions-aid#titletop" class="first">Undergraduate</a></li>
+<li class=""><a href="/admissions-aid#grad" class="">Graduate & Professional Schools</a></li>
+<li class=""><a href="/admissions-aid#continue" class="">Continuing Education</a></li>
+<li class="last"><a href="/admissions-aid#summer" class="last">Summer Programs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="nav-right-half">
+<ul role="presentation" class="clearfix">
+<li class="has-drop-nav">
+<a href="/schools">
+Schools
+</a>
+<ul class="list--drop-nav">
+<li class="first"><a href="http://www.hbs.edu/" class="first">Business</a></li>
+<li class=""><a href="http://college.harvard.edu" class="">College</a></li>
+<li class=""><a href="http://www.dce.harvard.edu/" class="">Continuing Education</a></li>
+<li class=""><a href="http://www.hsdm.harvard.edu/" class="">Dental</a></li>
+<li class=""><a href="http://www.gsd.harvard.edu/" class="">Design</a></li>
+<li class=""><a href="http://www.hds.harvard.edu/" class="">Divinity</a></li>
+<li class=""><a href="http://www.gse.harvard.edu/" class="">Education</a></li>
+<li class=""><a href="http://seas.harvard.edu/" class="">Engineering</a></li>
+<li class=""><a href="http://www.fas.harvard.edu/" class="">Faculty of Arts & Sciences</a></li>
+<li class=""><a href="http://www.hks.harvard.edu/" class="">Government</a></li>
+<li class=""><a href="http://www.gsas.harvard.edu/" class="">Graduate School</a></li>
+<li class=""><a href="http://www.law.harvard.edu/index.html" class="">Law</a></li>
+<li class=""><a href="http://hms.harvard.edu/" class="">Medical</a></li>
+<li class=""><a href="http://www.hsph.harvard.edu/" class="">Public Health</a></li>
+<li class="last"><a href="http://www.radcliffe.edu/" class="last">Radcliffe Institute</a></li>
+</ul>
+</li>
+<li class="has-drop-nav">
+<a href="/on-campus">
+On Campus
+</a>
+<ul class="list--drop-nav">
+<li class="first"><a href="/on-campus/arts-and-humanities" class="first">Arts and Humanities</a></li>
+<li class=""><a href="http://www.gocrimson.com/" class="">Athletics</a></li>
+<li class=""><a href="/on-campus/commencement" class="">Commencement</a></li>
+<li class=""><a href="http://hr.harvard.edu/jobs/" class="">Employment</a></li>
+<li class=""><a href="/events" class="">Events</a></li>
+<li class=""><a href="http://harvardx.harvard.edu/" class="">HarvardX</a></li>
+<li class=""><a href="http://library.harvard.edu/" class="">Library</a></li>
+<li class=""><a href="/on-campus/museums" class="">Museums</a></li>
+<li class=""><a href="/on-campus/research" class="">Research</a></li>
+<li class="last"><a href="/on-campus/visit-harvard" class="last">Visit Harvard</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="nav-group nav-group--callouts">
+<ul class="clearfix">
+<li class="nav-left-half">
+<ul role="presentation" class="clearfix">
+<li>
+<a href="http://news.harvard.edu/gazette/">
+Gazette News
+</a>
+</li>
+<li>
+<a href="/events">
+Events
+</a>
+</li>
+</ul>
+</li>
+<li class="nav-right-half">
+<ul role="presentation" class="clearfix">
+<li>
+<a href="/on-campus/visit-harvard" class="">
+Visit
+</a>
+</li>
+<li>
+<a href="http://alumni.harvard.edu/givenow">
+Give
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="list-clean">
+<ul class="nav-group nav-group--top-bar">
+<li class="first"><a href="/faculty" class="first">Faculty</a></li>
+<li class=""><a href="/staff" class="">Staff</a></li>
+<li class=""><a href="/students" class="">Students</a></li>
+<li class=""><a href="http://alumni.harvard.edu" class="">Alumni</a></li>
+<li class=""><a href="/parents" class="">Parents</a></li>
+<li class=""><a href="/on-campus/visit-harvard" class="">Visitors</a></li>
+<li class="last"><a href="/media-relations" class="last">Media</a></li>
+</ul>
+</div>
+</div> 
+</nav>
+<form role="search" id="searchArea" class="search-area" method="get" action="/searches/">
+<label for="siteSearch">
+<span class="is-visually-hidden">
+Search:
+</span>
+</label>
+<input type="search" name="searchtext" id="searchSite" class="input-search" aria-label="search" placeholder="What can we help you find?" />
+<button type="button" class="btn--mobile-site-search">
+<span class="is-visually-hidden">
+Open Search
+</span>
+</button>
+</form>
+</header>
+ 
+<main role="main" id="mainArea" class="main-base">
+
+<header class="main-base__header">
+<div class="wrapper wrapper--1-down">
+
+<nav role="navigation" class="nav-crumbs">
+<ol class="nav-crumbs__list" aria-label="Bread Crumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
+<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+<a itemprop="item" href="/about-harvard"><span itemprop="name">About Harvard</span></a>
+<meta itemprop="position" content="1" />
+</li>
+</ol>
+</nav>
+<h1 id="current_page_title"><a name="titletop"></a>
+Maps &amp; Directions </h1>
+
+<a href="#subNav" id="subnavBtn" class="btn btn--small btn--subnav">
+<span aria-label="Open Sub Navigation"></span>
+</a>
+</div>
+</header>
+<div class="wrapper wrapper--1-down content">
+<div class="clearfix  grid-fixed-side">
+<div class="fixed-side-col">
+<nav class="sub-nav sub-nav-normal" role="navigation" id="subNav">
+<div class="list-clean">
+<ul>
+<li class="first"><a href="/about-harvard/harvard-glance" class="first">Harvard at a Glance</a></li>
+<li class=""><a href="/president" class="">Harvard's President</a></li>
+<li class=""><a href="/about-harvard/harvards-president-leadership" class="">Harvard's Leadership</a></li>
+<li class=""><a href="/about-harvard/academic-experience" class="">Academic Experience</a></li>
+<li class=""><a href="/about-harvard/administrative-offices" class="">Administrative Offices</a></li>
+<li class=""><a href="/about-harvard/directories" class="">Directories</a></li>
+<li class=""><a href="/about-harvard/frequently-asked-questions" class="">FAQ</a></li>
+<li class=""><a href="http://community.harvard.edu/" class="">Harvard in the Community</a></li>
+<li class=" active-trail active"><a href="/about-harvard/maps-directions" class=" active-trail active">Maps & Directions</a></li>
+<li class=""><a href="/about-harvard/harvard-mobile-apps" class="">Mobile Apps</a></li>
+<li class=""><a href="/about-harvard/multimedia" class="">Multimedia</a></li>
+<li class=""><a href="http://news.harvard.edu/gazette/" class="">News</a></li>
+<li class="last"><a href="/about-harvard/social-media-and-newsletter-directory" class="last">Social Media and Newsletters</a></li>
+</ul>
+</div>
+</nav>
+</div>
+<article role="article" class="w-100" id="mainContent">
+<div class="region region-content">
+<div id="block-system-main" class="block block-system">
+<div class="content">
+<div id="node-644" class="node node-page clearfix 11" about="/about-harvard/maps-directions" typeof="foaf:Document">
+<span property="dc:title" content="Maps &amp; Directions" class="rdf-meta element-hidden"></span>
+<div class="content">
+<div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Visit the <a href="/on-campus/visit-harvard">Harvard University Information Center</a>&nbsp;for&nbsp;general information about the campus, or a free, historical tour of Harvard Yard. <a href="/on-campus/visit-harvard/directions">Directions by public transportation or car</a> are also available.</p>
+<p><a href="https://www.google.com/maps/place/1350+Massachusetts+Ave,+Harvard+University,+Cambridge,+MA+02138/@42.37271,-71.1188557,17z/data=!3m1!4b1!4m2!3m1!1s0x89e37742dc1c29a7:0xc3dbda7a42311d03"><img src="/sites/default/files/content/harvard-map-google.jpg" alt="Harvard University Map" title="Harvard University Map" width="850" height="433"></a></p>
+<p>See the <a href="http://map.harvard.edu/">Harvard University map</a>&nbsp;or the&nbsp;<a href="http://map.harvard.edu/?ctrx=763320&amp;ctry=2947850&amp;level=8">Longwood Medical Area map</a>&nbsp;for detailed campus information. A campus map is also available for download as part of the <a href="/all-harvard-mobile">Harvard mobile app.</a></p>
+<h2>Jump to maps and directions for:</h2>
+<ul>
+<li><a href="#schools">Schools</a></li>
+<li><a href="#theaters">Theaters</a></li>
+<li><a href="#misc">Miscellaneous</a></li>
+<li><a href="#hospitals">Hospitals and Clinics</a></li>
+<li><a href="#museums">Museums</a></li>
+<li><a href="#libraries">Libraries</a></li>
+<li><a href="#athletic">Athletic Facilities</a></li>
+</ul>
+<hr>
+<p><a name="schools" class="anchor"></a></p>
+<h3>Schools</h3>
+<ul>
+<li><a href="http://map.harvard.edu/">Harvard College</a></li>
+<li><a href="http://hms.harvard.edu/contact-us/maps-and-directions">Harvard Medical School</a></li>
+<li><a href="http://www.hbs.edu/about/visit.html">Harvard Business School</a></li>
+<li><a href="https://www.google.com/maps/place/Graduate+School+of+Arts+and+Sciences/@42.372657,-71.1208207,17z/data=!3m1!4b1!4m5!3m4!1s0x89e376dd1dabbd8f:0x83d5672f70b31b6e!8m2!3d42.372657!4d-71.118632">Graduate School of Arts and Sciences</a></li>
+<li><a href="http://www.gsd.harvard.edu/admissions/visiting/">Graduate School of Design</a></li>
+<li><a href="http://hds.harvard.edu/about/map-and-directions">Divinity School</a></li>
+<li><a href="http://www.gse.harvard.edu/about/campus/directions/index.html">Graduate School of Education</a></li>
+<li><a href="http://www.seas.harvard.edu/about-seas/map-directions/getting-seas">Harvard John A. Paulson School of Engineering and Applied Sciences</a></li>
+<li><a href="https://www.hks.harvard.edu/more/about-us/maps-directions">Kennedy School of Government</a></li>
+<li><a href="http://hls.harvard.edu/about/campus-map-and-directions/">Harvard Law School</a></li>
+<li><a href="http://www.hsph.harvard.edu/about/location-and-directions/">Harvard T.H. Chan School of Public Health</a></li>
+<li><a href="http://www.radcliffe.harvard.edu/directions-radcliffe-institute">Radcliffe Institute for Advanced Study</a></li>
+</ul>
+<p><a name="hospitals" class="anchor"></a></p>
+<h3>Hospitals and Clinics</h3>
+<ul>
+<li><a href="http://www.bidmc.org/CentersandDepartments/Departments/CommunityHealthCenters/BowdoinStreetHealthCenter/Directions.aspx">Beth Israel Deaconess Hospital</a></li>
+<li><a href="https://www.brighamandwomens.org/about-bwh/locations/boston-main-campus-self-parking-and-valet">Brigham &amp; Women's Hospital</a></li>
+<li><a href="http://www.challiance.org/location/cambridge-hospital-directions.aspx">Cambridge Hospital</a></li>
+<li><a href="http://www.childrenshospital.org/patient-resources/getting-here">Children's Hospital</a></li>
+<li><a href="http://www.dana-farber.org/Adult-Care/New-Patient-Guide/Driving-Directions.aspx">Dana-Farber Cancer Institute</a></li>
+<li><a href="http://www.joslin.org/850_1076.asp">Joslin Diabetes Center</a></li>
+<li><a href="http://www.massgeneral.org/map/directions.html">Massachusetts General Hospital</a></li>
+<li><a href="http://www.masseyeandear.org/locations/boston/maincampus">Massachusetts Eye and Ear Infirmary</a></li>
+<li><a href="http://www.schepens.harvard.edu/mapdirectionss/about-us/mapdirections.html">Schepens Eye Research Institute</a></li>
+<li><a href="http://huhs.harvard.edu/locations-hours">Harvard University Health Services</a></li>
+</ul>
+<p><a name="libraries" class="anchor"></a></p>
+<h3>Libraries</h3>
+<ul>
+<li><a href="http://www.library.hbs.edu/info/directions.html">Baker</a></li>
+<li><a href="https://www.countway.harvard.edu/about/directions">Countway</a></li>
+<li><a href="http://www.gse.harvard.edu/library/">Gutman</a></li>
+<li><a href="https://library.harvard.edu/libraries/lamont">Lamont</a></li>
+<li><a href="https://library.harvard.edu/libraries/widener">Widener</a></li>
+<li><a href="https://library.harvard.edu/libraries">more libraries</a></li>
+</ul>
+<p><a name="theaters" class="anchor"></a></p>
+<h3>Theaters</h3>
+<ul>
+<li><a href="https://americanrepertorytheater.org/venue/loeb-drama-center/">Loeb Drama Center</a></li>
+<li><a href="https://ofa.fas.harvard.edu/calendar/upcoming/venue/sanders-theatre">Sanders Theatre</a></li>
+</ul>
+<p><a name="museums" class="anchor"></a></p>
+<h3>Museums</h3>
+<ul>
+<li><a href="http://www.arboretum.harvard.edu/visit/directions/">Arnold Arboretum</a></li>
+<li><a href="http://harvardforest.fas.harvard.edu/directions">Harvard Forest</a></li>
+<li><a href="http://www.hmnh.harvard.edu/plan_your_visit/directions_and_parking.html">Harvard Museum of Natural History</a></li>
+<li><a href="http://www.harvardartmuseums.org/plan-your-visit">Harvard Art Museums</a></li>
+<li><a href="http://www.peabody.harvard.edu/node/17">Peabody Museum</a></li>
+</ul>
+<p><a name="athletic" class="anchor"></a></p>
+<h3>Athletic Facilities</h3>
+<ul>
+<li><a href="http://www.gocrimson.com/information/facilities/malkin">Malkin Athletic Center</a></li>
+<li><a href="http://www.hcs.harvard.edu/%7Eradrugby/directions.html">Rugby Pitch</a></li>
+<li><a href="http://www.hcs.harvard.edu/~f-hockey/directions.html">Jordan Field</a></li>
+</ul>
+<p><a name="misc" class="anchor"></a></p>
+<h3>Miscellaneous</h3>
+<ul>
+<li><a href="http://drclas.harvard.edu/pages/contact">David Rockefeller Center for Latin American Studies</a></li>
+<li><a href="http://www.doaks.org/about/visit-dumbarton-oaks">Dumbarton Oaks</a></li>
+<li><a href="http://www.hfc.harvard.edu/about/directions-parking">Harvard Faculty Club&nbsp;</a></li>
+<li><a href="https://library.harvard.edu/libraries/film-archive">Harvard Film Archive</a></li>
+<li><a href="http://huh.harvard.edu/pages/visit">Harvard Herbaria</a></li>
+<li><a href="http://hillel.harvard.edu/contact-0">Harvard Hillel</a></li>
+<li><a href="http://www.hupd.harvard.edu/contact-us">Harvard University Police Department</a></li>
+<li><a href="http://www.hcp.med.harvard.edu/contact-hcp-staff">Health Care Policy Department</a>&nbsp;(Medical School)&nbsp;</li>
+<li><a href="http://otd.harvard.edu/contact-us/">Office of Technology and Trademark Licensing</a></li>
+</ul></div></div></div> </div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div> 
+</div>
+</main>
+
+
+<aside role="complementary" id="secondaryArea" class="aside-base">
+<div class="region region-page-footer">
+<div id="block-views-module-groups-block-3" class="block block-views">
+<div class="content">
+<div class="view view-module-groups view-id-module_groups view-display-id-block_3 view-dom-id-b1fc9cf9121633d07cce39aca7c20328">
+<div class="view-content">
+<div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+<section class="card--news-signup txt-center stitle-module group - about - daily gazette sign up c-bg-crimson c-txt-white" data-moduletitle="module group - about - daily gazette sign up">
+<p class="card--news-signup__leadin wrapper wrapper--3-down">
+Get the latest Harvard Gazette news delivered to your inbox.
+</p>
+<form class="content-area" id="newspaper_signup_form" action="https://www.pages01.net/harvard/gazette" method="get">
+<div class="form-row display-inline-block">
+<input type="email" id="newspaper_email" name="email" class="input-text input-reveal" placeholder="your_email@email.com" />
+<label for="newspaper_email" class="label-reveal">
+Your Email:
+</label>
+</div>
+<div class="form-row display-inline-block">
+<button type="submit" class="btn btn--min-width btn--reverse" id="newspaper_signup_btn">
+Subscribe
+</button>
+</div>
+</form>
+</section>
+<section class="stitle-module group - about - popular stories c-bg-grey c-txt-dark padding-sm" data-moduletitle="module group - about - popular stories">
+<header>
+<h2 class="txt-h1-alt txt-center ">Popular Gazette Stories</h2>
+</header>
+<div class="wrapper">
+<div class="grid grid--3a">
+<div class="w-33 w-100--m">
+
+<div class="card c-txt-dark card--gazette">
+<div class="card__content">
+<div class="card__content__source">
+<div class="card__thumb">
+<a href="http://news.harvard.edu/gazette/story/2019/01/functional-skills-of-those-with-down-syndrome-can-improve-into-adulthood">
+<img src="https://i2.wp.com/news.harvard.edu/wp-content/uploads/2019/01/DownSyndrome_iStock-544358312.jpg?fit=945%2C630&amp;amp;ssl=1" alt="Functional skills of those with Down syndrome can improve into adulthood" />
+</a>
+</div>
+<h3 class="card__title">
+<a href="http://news.harvard.edu/gazette/story/2019/01/functional-skills-of-those-with-down-syndrome-can-improve-into-adulthood">Functional skills of those with Down syndrome can improve into adulthood</a>
+</h3>
+<div class="card__text">A new study from MassGeneral Hospital for Children looks at how people with Down syndrome continue to learn.</div>
+</div>
+<div class="card__outro">
+<div class="card__outro__cta-2">
+<a href="http://news.harvard.edu/gazette/story/2019/01/functional-skills-of-those-with-down-syndrome-can-improve-into-adulthood">
+Read more
+</a>
+</div>
+</div>
+</div> 
+</div>
+</div>
+<div class="w-33 w-50--m">
+
+<div class="card c-txt-dark card--gazette">
+<div class="card__content">
+<div class="card__content__source">
+<div class="card__thumb">
+<a href="http://news.harvard.edu/gazette/story/2018/12/a-virtual-reality-experience-of-being-inside-an-exploded-star">
+<img src="https://i0.wp.com/news.harvard.edu/wp-content/uploads/2018/12/2D.jpg?fit=844%2C630&amp;amp;ssl=1" alt="A virtual reality experience of being inside an exploded star" />
+</a>
+</div>
+<h3 class="card__title">
+<a href="http://news.harvard.edu/gazette/story/2018/12/a-virtual-reality-experience-of-being-inside-an-exploded-star">A virtual reality experience of being inside an exploded star</a>
+</h3>
+<div class="card__text">An astronomical team uses detailed data to create a virtual reality experience of being inside an exploded star.</div>
+</div>
+<div class="card__outro">
+<div class="card__outro__cta-2">
+<a href="http://news.harvard.edu/gazette/story/2018/12/a-virtual-reality-experience-of-being-inside-an-exploded-star">
+Read more
+</a>
+</div>
+</div>
+</div> 
+</div>
+</div>
+<div class="w-33 w-50--m">
+
+<div class="card c-txt-dark card--gazette">
+<div class="card__content">
+<div class="card__content__source">
+<div class="card__thumb">
+<a href="http://news.harvard.edu/gazette/story/2018/12/a-step-by-step-guide-on-how-to-choose-make-and-keep-new-years-resolutions">
+<img src="https://i1.wp.com/news.harvard.edu/wp-content/uploads/2018/12/book-2562345-copy.jpg?fit=945%2C630&amp;amp;ssl=1" alt="A step-by-step guide on how to choose, make, and keep New Year’s resolutions" />
+</a>
+</div>
+<h3 class="card__title">
+<a href="http://news.harvard.edu/gazette/story/2018/12/a-step-by-step-guide-on-how-to-choose-make-and-keep-new-years-resolutions">A step-by-step guide on how to choose, make, and keep New Year’s resolutions</a>
+</h3>
+<div class="card__text">Figure out what resolutions fit your lifestyle and then make them happen with some expert advice.</div>
+</div>
+<div class="card__outro">
+<div class="card__outro__cta-2">
+<a href="http://news.harvard.edu/gazette/story/2018/12/a-step-by-step-guide-on-how-to-choose-make-and-keep-new-years-resolutions">
+Read more
+</a>
+</div>
+</div>
+</div> 
+</div>
+</div>
+</div>
+<div class="grid grid--3a">
+<div class="w-33 w-100--m">
+
+<div class="card c-txt-dark card--gazette">
+<div class="card__content">
+<div class="card__content__source">
+<div class="card__thumb">
+<a href="http://news.harvard.edu/gazette/story/2019/01/a-harvard-exhibit-on-slavery-and-christianity">
+<img src="https://i1.wp.com/news.harvard.edu/wp-content/uploads/2019/01/120518_Slavery_OF01A_2500.jpg?fit=945%2C630&amp;amp;ssl=1" alt="A Harvard exhibit on Christianity and slavery" />
+</a>
+</div>
+<h3 class="card__title">
+<a href="http://news.harvard.edu/gazette/story/2019/01/a-harvard-exhibit-on-slavery-and-christianity">A Harvard exhibit on Christianity and slavery</a>
+</h3>
+<div class="card__text">A student-mounted exhibition probes the ties and tensions between slavery and Christianity during centuries of American bondage.</div>
+</div>
+<div class="card__outro">
+<div class="card__outro__cta-2">
+<a href="http://news.harvard.edu/gazette/story/2019/01/a-harvard-exhibit-on-slavery-and-christianity">
+Read more
+</a>
+</div>
+</div>
+</div> 
+</div>
+</div>
+<div class="w-33 w-50--m">
+
+<div class="card c-txt-dark card--gazette">
+<div class="card__content">
+<div class="card__content__source">
+<div class="card__thumb">
+<a href="http://news.harvard.edu/gazette/story/2017/04/over-nearly-80-years-harvard-study-has-been-showing-how-to-live-a-healthy-and-happy-life">
+<img src="https://i2.wp.com/news.harvard.edu/wp-content/uploads/2017/04/2017_12_4_agingseries_1120x625px_healthy_aging.jpg?fit=1120%2C625&amp;amp;ssl=1" alt="Over nearly 80 years, Harvard study has been showing how to live a healthy and happy life" />
+</a>
+</div>
+<h3 class="card__title">
+<a href="http://news.harvard.edu/gazette/story/2017/04/over-nearly-80-years-harvard-study-has-been-showing-how-to-live-a-healthy-and-happy-life">Over nearly 80 years, Harvard study has been showing how to live a healthy and happy life</a>
+</h3>
+<div class="card__text">For nearly 80 years, the Harvard Study of Adult Development has been producing data and lessons on how to live longer, happier, and healthier lives.</div>
+</div>
+<div class="card__outro">
+<div class="card__outro__cta-2">
+<a href="http://news.harvard.edu/gazette/story/2017/04/over-nearly-80-years-harvard-study-has-been-showing-how-to-live-a-healthy-and-happy-life">
+Read more
+</a>
+</div>
+</div>
+</div> 
+</div>
+</div>
+<div class="w-33 w-50--m">
+
+<div class="card c-txt-dark card--gazette">
+<div class="card__content">
+<div class="card__content__source">
+<div class="card__thumb">
+<a href="http://news.harvard.edu/gazette/story/2008/06/text-of-j-k-rowling-speech">
+<img src="https://i2.wp.com/news.harvard.edu/wp-content/uploads/2009/11/060508_com_jc_4251.jpg?fit=605%2C403&amp;amp;ssl=1" alt="Text of J.K. Rowling&#039;s speech" />
+</a>
+</div>
+<h3 class="card__title">
+<a href="http://news.harvard.edu/gazette/story/2008/06/text-of-j-k-rowling-speech">Text of J.K. Rowling&#039;s speech</a>
+</h3>
+<div class="card__text">Call it magic, but the rain held off while Harry Potter creator J.K. Rowling delivered the keynote address this afternoon (June 5) at Harvard University’s annual meeting of the Harvard Alumni Association.</div>
+</div>
+<div class="card__outro">
+<div class="card__outro__cta-2">
+<a href="http://news.harvard.edu/gazette/story/2008/06/text-of-j-k-rowling-speech">
+Read more
+</a>
+</div>
+</div>
+</div> 
+</div>
+</div>
+</div> <div class="txt-center deck__cta-area">
+<a href="http://news.harvard.edu/gazette" class="btn btn--reverse">
+Read More
+</a>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div> </div>
+</div>
+<div id="block-views-module-groups-block-1" class="block block-views">
+<div class="content">
+<div class="view view-module-groups view-id-module_groups view-display-id-block_1 view-dom-id-5f14d00cde3d8940f753bed7cfeea927">
+<div class="view-content">
+<div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+<section class="card-callout stitle-module group - visit - map card-callout--reverse" style="background-image: url(https://www.harvard.edu/sites/default/files/module_media/Map_0.png); background-size: cover;" data-moduletitle="module group - visit - map">
+<div class="card-callout__content">
+<h2 class="txt-h1 card-callout__text">
+Navigate campus </h2>
+</div>
+<div class="card-callout__content-outro">
+<a href="http://map.harvard.edu" class="btn btn--cta">
+View the map
+<span class="is-visually-hidden">
+Navigate campus
+</span>
+</a>
+</div>
+</section>
+<section class="card card--title-callout txt-center stitle-module group - visit - virtual tour c-bg-blue-dark c-txt-white" data-moduletitle="module group - visit - virtual tour">
+<div class="wrapper padding-sm">
+<h2 class="txt-h1-alt card--title-callout__heading c-txt-white">
+Explore Harvard from home </h2>
+<a href="https://college.harvard.edu/admissions/visit/virtual-tour" class="btn btn--reverse btn--min-width">
+Take virtual tour
+<span class="is-visually-hidden">
+Explore Harvard from home
+</span>
+</a>
+</div>
+</section>
+</div>
+</div>
+</div> </div>
+</div>
+</div>
+</aside>
+
+
+<footer role="contentinfo" id="footerArea" class="footer-base">
+<div class="wrapper wrapper--1-down content-area">
+
+<a href="#page" class="jump-to-nav jump-to-nav--hidden">
+Jump to Top
+</a>
+<div class="grid grid--footer">
+<div class="w-20 w-33--m">
+<h1 class="footer__heading txt-h5">
+Website
+</h1>
+<ul ul_attributes="nav-group nav-group--top-bar" display_stickynav="yes" class="list-clean"><li class="menu-449 first"><a href="http://www.accessibility.harvard.edu/" title="Accessibility@0">Accessibility</a></li>
+<li class="menu-683 last"><a href="/sitemap" title="Sitemap@0">Sitemap</a></li>
+</ul> </div>
+<div class="w-20 w-33--m">
+<h2 class="footer__heading txt-h5">
+Get in Touch
+</h2>
+<ul ul_attributes="nav-group nav-group--top-bar" display_stickynav="yes" class="list-clean"><li class="menu-660 first"><a href="/contact-harvard" title="Contact@2">Contact Harvard</a></li>
+<li class="menu-2078 active-trail active"><a href="/about-harvard/maps-directions" title="" class="active-trail active">Maps &amp; Directions</a></li>
+<li class="menu-2383"><a href="http://hr.harvard.edu/jobs" title="">Jobs</a></li>
+<li class="menu-2384 last"><a href="/about-harvard/social-media-and-newsletter-directory" title="">Social Media</a></li>
+</ul> </div>
+<div class="w-20 w-33--m">
+<h3 class="footer__heading txt-h5">
+Security &amp; Brand
+</h3>
+<ul ul_attributes="nav-group nav-group--top-bar" display_stickynav="yes" class="list-clean"><li class="menu-448 first"><a href="/privacy-statement" title="Privacy@0">Privacy Statement</a></li>
+<li class="menu-447"><a href="/copyright-issue" title="Infringement@0">Report Copyright Infringement</a></li>
+<li class="menu-861"><a href="/security-issue" title="Report Security Issue">Report Security Issue</a></li>
+<li class="menu-446 last"><a href="http://trademark.harvard.edu/pages/trademark-notice" title="TrademarkNotice@0">Trademark Notice</a></li>
+</ul> </div>
+<div class="w-footer-last">
+<h4 class="footer__heading txt-h5 is-visually-hidden">
+Social Media &amp; other Application Links
+</h4>
+<ul class="list-social-links list-clean">
+<li>
+<a href="http://facebook.com/harvard" class="social-link social-link--facebook">
+<span class="is-visually-hidden">
+Facebook
+</span>
+</a>
+</li>
+<li>
+<a href="http://twitter.com/harvard" class="social-link social-link--twitter">
+<span class="is-visually-hidden">
+Twitter
+</span>
+</a>
+</li>
+<li>
+<a href="http://www.instagram.com/harvard" class="social-link social-link--instagram">
+<span class="is-visually-hidden">
+Instagram
+</span>
+</a>
+</li>
+<li>
+<a href="http://youtube.com/harvard" class="social-link social-link--youtube">
+<span class="is-visually-hidden">
+YouTube
+</span>
+</a>
+</li>
+<li>
+<a href="https://soundcloud.com/harvard" class="social-link social-link--soundcloud">
+<span class="is-visually-hidden">
+SoundCloud
+</span>
+</a>
+</li>
+<li>
+<a href="https://www.linkedin.com/edu/school?id=18483" class="social-link social-link--linkedin">
+ <span class="is-visually-hidden">
+LinkedIn
+</span>
+</a>
+</li>
+<li>
+<a href="http://www.harvard.edu/itunes" class="social-link social-link--itunes">
+<span class="is-visually-hidden">
+iTunes
+</span>
+</a>
+</li>
+</ul>
+<p class="w-60 other-apps">
+<a href="/all-harvard-mobile">
+Harvard Apps
+</a>
+</p>
+</div>
+</div> 
+<p class="footer__outro">
+&copy; 2019 The President and Fellows of Harvard College
+</p>
+</div>
+</footer>
+
+</div> 
+
+<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="/sites/all/themes/hedu2015/assets/js/script.js"></script>
+
+<script src="/sites/all/themes/hedu2015/assets/js-element-queries/ResizeSensor.js"></script>
+<script src="/sites/all/themes/hedu2015/assets/js-element-queries/ElementQueries.js"></script>
+<script src="/sites/all/themes/hedu2015/assets/slick/slick.js"></script>
+<script>
+$('.grid--3a.carousel').slick( {
+    dots: false,
+    infinite: false,
+    arrows: true,
+    speed: 300,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    responsive: [
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  });
+$('.grid--full.carousel').slick( {
+    dots: false,
+    infinite: false,
+    arrows: true,
+    speed: 300,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+		autoplay: true,
+  	autoplaySpeed: 4000,
+  });
+$('.grid--full-w-view.carousel .view .view-content').slick( {
+    dots: false,
+    infinite: false,
+    arrows: true,
+    speed: 300,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+		autoplay: true,
+  	autoplaySpeed: 4000,
+  });
+</script>
+
+<script type="text/javascript">
+ (function(w) {
+   w._sv = w._sv || {};
+   w._sv.trackingCode = 'FfgooJjBjzhBdGbpsXIHyvlzrdrimWab'; 
+   var s = document.createElement('script');
+   s.src = '//api.survicate.com/assets/survicate.js';
+   s.async = true;
+   var e = document.getElementsByTagName('script')[0];
+   e.parentNode.insertBefore(s, e);
+ })(window);
+</script>
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"5719832647","applicationID":"56252957","transactionName":"b1AAMENZW0dZW0dfW1YaIwdFUVpaF1ZcUlFnRQMDVGdDXV1P","queueTime":0,"applicationTime":149,"atts":"QxcDRgtDSEk=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>
