@@ -3,3 +3,4 @@
 // 或者为每一个客户端的消息发出channel建立缓冲区，这样大部分的消息便不会被丢掉；
 // broadcaster应该用一个非阻塞的send向这个channel中发消息。
 package main
+
