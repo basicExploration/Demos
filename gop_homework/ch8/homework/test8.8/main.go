@@ -28,7 +28,7 @@ func handleConn(c net.Conn) {
 	c.Close()
 }
 
-//!-
+
 
 func main() {
 	l, err := net.Listen("tcp", "localhost:8000")
@@ -79,4 +79,42 @@ func main() {
 //
 //
 //
+//}
+
+//func main() {
+//	dd()
+//	time.Sleep(1e10)
+//}
+//
+//func dd() {
+//	dd := make(chan bool)
+//	go tttt(dd)
+//	ctx, cancle := context.WithDeadline(context.Background(),time.Now().Add(time.Second*3))
+//	defer cancle()
+//	tt(ctx, dd)
+//
+//}
+//func tttt(d chan  bool){
+//	de := 0
+//	for {
+//		de ++
+//		if de == 10 {
+//			return
+//		}
+//		d <- true
+//		time.Sleep(time.Second)
+//	}
+//
+//}
+//func tt(ctx context.Context, d chan bool) {
+//	for {
+//		select {
+//		case <-ctx.Done():
+//			return
+//		case <-time.After(time.Second):
+//			return
+//		default:
+//			fmt.Println(<-d)
+//		}
+//	}
 //}
