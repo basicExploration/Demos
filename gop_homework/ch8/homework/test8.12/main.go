@@ -2,3 +2,5 @@
 // 为了达成这个目的，你需要有一个客户端的集合，
 // 并且在entering和leaving的channel中记录客户端的名字。
 package main
+
+
