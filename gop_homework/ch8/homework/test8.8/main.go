@@ -4,6 +4,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"net"
 	"strings"
 	"time"
@@ -29,48 +30,53 @@ func handleConn(c net.Conn) {
 
 //!-
 
-//func main() {
-//	l, err := net.Listen("tcp", "localhost:8000")
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	for {
-//		select {
-//		case <- time.After(time.Second *10):
-//			return
-//		default:
-//			conn, err := l.Accept()
-//			if err != nil {
-//				log.Print(err) // e.g., connection aborted
-//				continue
-//			}
-//			go handleConn(conn)
-//		}
-//
-//	}
-//}
-
 func main() {
-	v := make(chan bool)
-	go tt(v)
+	l, err := net.Listen("tcp", "localhost:8000")
+	if err != nil {
+		log.Fatal(err)
+	}
 	for {
 		select {
-		case <-time.After(time.Second * 10):
+		case <- time.After(time.Second *10):
 			return
 		default:
-			fmt.Println(<-v)
+			conn, err := l.Accept()
+			if err != nil {
+				log.Print(err) // e.g., connection aborted
+				continue
+			}
+			go handleConn(conn)
 		}
-	}
 
-	time.Sleep(1e10)
+	}
 }
 
-func tt(c chan bool) {
-	for {
-		c <- true
-		time.Sleep(time.Second)
-	}
-
-
-
-}
+//func main() {
+//	v := make(chan bool)
+//	go tt(v)
+//	for {
+//		select {
+//		case <-time.After(time.Second * 10):
+//			return
+//		default:
+//			fmt.Println(<-v)
+//		}
+//	}
+//
+//	time.Sleep(1e10)
+//}
+//
+//func tt(c chan bool) {
+//	var t int
+//	for {
+//		t++
+//		if t == 11 {
+//			return
+//		}
+//		c <- true
+//		time.Sleep(time.Second*3)
+//	}
+//
+//
+//
+//}
