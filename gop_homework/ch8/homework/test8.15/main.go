@@ -4,3 +4,22 @@
 // broadcaster应该用一个非阻塞的send向这个channel中发消息。
 package main
 
+func broadcaster() {
+	clients := make(map[client]bool,30) // all connected clients
+	for {
+		select {
+		case msg := <-messages:
+			// Broadcast incoming message to all
+			// clients' outgoing message channels.
+			for cli := range clients {
+				cli <- msg
+			}
+		case cli := <-entering:
+			clients[cli] = true
+
+		case cli := <-leaving:
+			delete(clients, cli)
+			close(cli)
+		}
+	}
+}
