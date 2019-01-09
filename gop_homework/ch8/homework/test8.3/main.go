@@ -5,3 +5,37 @@
 // 这样的话后台goroutine可以在标准输入被关闭后继续打印从reverb1服务器传回的数据。
 // （要在reverb2服务器也完成同样的功能是比较困难的；参考练习 8.4。）
 package main
+
+import (
+	"io"
+	"log"
+	"net"
+	"os"
+	"sync"
+)
+
+//!+
+func main() {
+	var sy sync.WaitGroup
+	sy.Add(1)
+	conn, err := net.Dial("tcp", "localhost:8000")
+	if err != nil {
+		log.Fatal(err)
+	}
+	go func() {
+		defer sy.Done()
+		io.Copy(os.Stdout, conn) // NOTE: ignoring errors
+		log.Println("done")
+	}()
+	mustCopy(conn, os.Stdin)
+	conn.Close()
+	sy.Wait()
+}
+
+//!-
+
+func mustCopy(dst io.Writer, src io.Reader) {
+	if _, err := io.Copy(dst, src); err != nil {
+		log.Fatal(err)
+	}
+}
