@@ -10,7 +10,6 @@ import (
 
 var (
 	RestMap map[string]int
-	depth   int
 )
 
 type Result struct {
@@ -20,13 +19,13 @@ type Result struct {
 func main() {
 	result := []string{}
 	RestMap = make(map[string]int)
-	TT("golang.org/x/net/html")
-	for k,_ := range RestMap{
-		result = append(result,k)
+	TT("github.com/googege/goo", 0)
+	for k, _ := range RestMap {
+		result = append(result, k)
 	}
 	fmt.Println(result)
 }
-func TT(s string) {
+func TT(s string, old int) {
 	re := new(Result)
 	cmd := exec.Command("/usr/local/bin/go", "list", "-e", "-json", s)
 	data, err := cmd.Output()
@@ -36,13 +35,10 @@ func TT(s string) {
 	json.Unmarshal(data, re)
 	for _, v := range re.Imports {
 		RestMap[v]++
-		depth++
-		TT(v)
-		if depth == 30 {
+		if old == len(RestMap) {
 			return
 		}
-
+		TT(v, len(RestMap))
 	}
 
 }
-
