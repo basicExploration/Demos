@@ -19,7 +19,7 @@ type Result struct {
 func main() {
 	result := []string{}
 	RestMap = make(map[string]int)
-	TT("github.com/googege/goo", 0)
+	TT("github.com/go-chi/chi", 0)
 	for k, _ := range RestMap {
 		result = append(result, k)
 	}
@@ -36,7 +36,7 @@ func TT(s string, old int) {
 	for _, v := range re.Imports {
 		RestMap[v]++
 		if old == len(RestMap) {
-			return
+			break
 		}
 		TT(v, len(RestMap))
 	}
