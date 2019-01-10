@@ -4,6 +4,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"os/exec"
 	"sync"
@@ -11,6 +12,7 @@ import (
 )
 
 var (
+	varS string
 	sy      sync.Mutex
 	RestMap map[string]int
 )
@@ -19,18 +21,30 @@ type Result struct {
 	Imports []string
 }
 
+func init(){
+	flag.StringVar(&varS,"mo","github.com/googege","搜索所有的包")
+	flag.Parse()
+}
 func main() {
 	result := []string{}
 	RestMap = make(map[string]int)
-	TT("github.com/go-chi/chi", 0)
-	time.Sleep(1e10)
+	TT(varS)
+	for   {
+		start := len(RestMap)
+		time.Sleep(time.Second)
+		end := len(RestMap)
+		if start == end {
+			fmt.Println(end)
+			break
+		}
+	}
 	for k, _ := range RestMap {
 		result = append(result, k)
 	}
 	fmt.Println(result)
 
 }
-func TT(s string, old int) {
+func TT(s string) {
 	re := new(Result)
 	cmd := exec.Command("/usr/local/bin/go", "list", "-e", "-json", s)
 	data, err := cmd.Output()
@@ -41,11 +55,8 @@ func TT(s string, old int) {
 	for _, v := range re.Imports {
 		sy.Lock()
 		RestMap[v]++
-		sy.Unlock()
-		if old == len(RestMap) {
-			break
-		}
-		go TT(v, len(RestMap))
+		sy.Unlock()// 如果在lock前调用unlock那么会发生error错误
+		go TT(v)
 	}
 
 }
