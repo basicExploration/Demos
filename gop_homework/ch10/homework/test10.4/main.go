@@ -29,7 +29,7 @@ func main() {
 	result := []string{}
 	RestMap = make(map[string]int)
 	TT(varS)
-	for   {
+	for   {// 此处一直阻塞，直到 start和end在一秒的时间区域内都是相等的时候然后退出。
 		start := len(RestMap)
 		time.Sleep(time.Second)
 		end := len(RestMap)
