@@ -42,3 +42,5 @@ func TT(s string, old int) {
 	}
 
 }
+
+//TODO 可以改成并发的。
