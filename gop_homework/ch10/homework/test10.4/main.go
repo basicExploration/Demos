@@ -6,9 +6,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"os/exec"
+	"sync"
+	"time"
 )
 
 var (
+	sy      sync.Mutex
 	RestMap map[string]int
 )
 
@@ -20,10 +23,12 @@ func main() {
 	result := []string{}
 	RestMap = make(map[string]int)
 	TT("github.com/go-chi/chi", 0)
+	time.Sleep(1e10)
 	for k, _ := range RestMap {
 		result = append(result, k)
 	}
 	fmt.Println(result)
+
 }
 func TT(s string, old int) {
 	re := new(Result)
@@ -34,11 +39,13 @@ func TT(s string, old int) {
 	}
 	json.Unmarshal(data, re)
 	for _, v := range re.Imports {
+		sy.Lock()
 		RestMap[v]++
+		sy.Unlock()
 		if old == len(RestMap) {
 			break
 		}
-		TT(v, len(RestMap))
+		go TT(v, len(RestMap))
 	}
 
 }
