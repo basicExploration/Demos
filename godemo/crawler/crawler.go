@@ -19,26 +19,30 @@ var (
 )
 
 // 设计理念 1 找到所有的img然后，获取所有的img的src，然后通过get将src创建到每个不同的文件里（使用jep包的decode和encode）
-func Crawler(){
+func Crawler() {
 	t := make(chan struct{}, 20)
 	fmt.Println("正在开始执行")
 	syw.Add(n)
 	for i := 0; i < n; i++ {
 		go func(i int) {
+			fmt.Println("开始进入分段式---", i)
 			t <- struct{}{}
 			defer func() {
 				if r := recover(); r != nil {
 					fmt.Println(r)
 				}
 			}()
+			var res *http.Response
+			var err error
+			var n *html.Node
 			s := strconv.FormatInt(int64(i), 10)
-			fmt.Println("开始获取页面")
-			res, err := http.Get(url + s)
-			<-t
+			res, err = http.Get(url + s) // TODO：错误的地方在于每次的请求 太快，如果做到当页面有某某东西了再使用get将东西返回过来呢？
 			if err != nil {
 				fmt.Println(err)
 			}
-			n, err := html.Parse(res.Body)
+			n, err = html.Parse(res.Body)
+			fmt.Println("启动回收机制")
+			<-t
 			res.Body.Close()
 			if err != nil {
 				fmt.Println(err)
@@ -59,6 +63,9 @@ func dear(n *html.Node, dd string) {
 			}
 
 		}
+	}
+	for i := n.FirstChild; i != nil; i = i.NextSibling {
+		dear(i, dd)
 	}
 }
 
