@@ -16,6 +16,9 @@ var (
 	sym  sync.Mutex
 	syw  sync.WaitGroup
 	syw1 sync.WaitGroup
+	syO  sync.Once
+	syO1 sync.Once
+	syO2 sync.Once
 )
 
 // 设计理念 1 找到所有的img然后，获取所有的img的src，然后通过get将src创建到每个不同的文件里（使用jep包的decode和encode）
@@ -25,7 +28,9 @@ func Crawler() {
 	syw.Add(n)
 	for i := 0; i < n; i++ {
 		go func(i int) {
-			fmt.Println("开始进入分段式---", i)
+			syO.Do(func() {
+				fmt.Println("正在获取数据......")
+			})
 			t <- struct{}{}
 			defer func() {
 				if r := recover(); r != nil {
@@ -41,7 +46,6 @@ func Crawler() {
 				fmt.Println(err)
 			}
 			n, err = html.Parse(res.Body)
-			fmt.Println("启动回收机制")
 			<-t
 			res.Body.Close()
 			if err != nil {
@@ -51,15 +55,18 @@ func Crawler() {
 		}(i)
 	}
 	syw.Wait()
-
+	fmt.Println("over.")
 }
 
 func dear(n *html.Node, dd string) {
+	t := make(chan struct{}, 20)
 	if n.Type == html.ElementNode && n.Data == "img" {
 		for _, v := range n.Attr {
 			if v.Key == "src" {
-				fmt.Println("已经获取src将要创造图片")
-				go crearFile(dd, v.Val)
+				syO1.Do(func() {
+					fmt.Println("正在整合数据......")
+				})
+				go crearFile(dd, v.Val, t)
 			}
 
 		}
@@ -69,14 +76,14 @@ func dear(n *html.Node, dd string) {
 	}
 }
 
-func crearFile(k, v string) {
-	t := make(chan struct{}, 20)
+func crearFile(k, v string, t chan struct{}) {
 	t <- struct{}{}
 	defer func() {
 		syw.Done()
-		fmt.Println(k, "已经完毕")
 	}()
-	fmt.Println("正在获取图片src")
+	syO2.Do(func() {
+		fmt.Println("正在制作图片......")
+	})
 	res, err := http.Get(v)
 	<-t // 限制访问个数
 	defer res.Body.Close()
@@ -97,5 +104,4 @@ func crearFile(k, v string) {
 		fmt.Println(err)
 	}
 	file.Close()
-	fmt.Println("图片制作完毕")
 }
