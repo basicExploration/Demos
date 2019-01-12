@@ -42,6 +42,26 @@ SELECT COUNT(*) num FROM number GROUP BY student_id ;
 -- 多表查询
 SELECT c.name, d.name FROM room c,dd d
 
+-- 连接查询 其实就是主表和附表的关系。
+SELECT r.name FROM room r INNER JOIN class c ON r.class=c.id WHERE r.id >10 ORDER BY r.id DESC LIMIT 100;
+-- 我们把tableA看作左表，把tableB看成右表，那么INNER JOIN是选出两张表都存在的记录：
+
+-- inner-join
+--
+-- LEFT OUTER JOIN是选出左表存在的记录：
+--
+-- left-outer-join
+--
+-- RIGHT OUTER JOIN是选出右表存在的记录：
+--
+-- right-outer-join
+--
+-- FULL OUTER JOIN则是选出左右表都存在的记录：
+--
+-- full-outer-join
+
+
+
 
 
 
