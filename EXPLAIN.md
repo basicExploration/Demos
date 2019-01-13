@@ -1,17 +1,7 @@
-# goFiles
-**go examples**
-![卡殿](https://github.com/googege/goFiles/blob/master/163899327.jpeg)
+# explain something of golang.
 
-[go语言圣经练习题](https://github.com/googege/goFiles/blob/master/gop_homework)
-[go语言书籍](https://github.com/googege/goFiles/blob/master/books)
-
-前三章以中文命名 （练习题）（练习1.1）
-从第四章开始使用英文(homework)(test4.1)
-
----
 **可以不重复造轮子 前提是你会造**
 ---
-关于go中容易错误的几点分析
 
 1. 闭包
 
