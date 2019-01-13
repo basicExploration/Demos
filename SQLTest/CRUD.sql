@@ -16,4 +16,6 @@ UPDATE values SET name="1";-- 像这种没有WHERE的语句，非常的危险，
 DELETE FROM values WHERE id=12;
 -- ⚠️
 DELETE FROM values --这样就删掉了全部，很危险
+-- INNER INTO 和SELECT结合，也就是将values的值用SELECT的值来代替了。
+INNER INTO coastroad(name,id) SELECT r.name,r,id FROM room r WHERE id>10;
 

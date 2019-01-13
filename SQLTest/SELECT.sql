@@ -61,6 +61,16 @@ SELECT r.name FROM room r INNER JOIN class c ON r.class=c.id WHERE r.id >10 ORDE
 -- full-outer-join
 -- 去重 DISTINCT.
 SELECT DISTINCT id,name FROM coastroad;
+-- 占位符的LIKE
+SELECT id,name FROM coastroad WHERE name LIKE '%g';
+-- 正则
+SELECT id,name FROM coastroad WHERE name REGEXP '^[RFP]'
+-- IN 是或的意思 就是 name是T 或者是D都可以。
+SELECT * FROM coastroad WHERE name IN ('T','D')
+-- BETWEEN的意思是在两者中间
+SELECT * FROM coastroad WHERE BETWEEN 12 AND 14;
+--- INTO 将某表格传入到另外一个表格。
+SELECT * INTO secondcoastroad FROM coastroad WHERE id >10 OR id<5;
 
 
 
