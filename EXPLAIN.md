@@ -815,3 +815,19 @@ func tt6() ( int) {
 然后按照相应的时候去先取消这个东西，当然还有一种应用场景就是，无论如何就是要5分钟后取消，打死都要
 那么可以 使用两个select，有一个select就放一个after和一个default即可。或则，使用 context包的withcanceltimeout 这个函数厉害 无论如何 只要设置的分钟数到了，就能立马取消。
 因为cancle withcancle那个函数 如果 不执行canle函数 那么ctx.done 就无法运行，这个时候 cancle的关闭就要在执行这个有ctx的函数之前了。就不能使用defer函数来关闭这个，因为一直有东西运行。
+
+24. 关于 string字符串 []byte 以及[]byte的十六进制表示（以string形式储存）
+
+```go
+	// 将string字符串，以unicode编码的形式，找到所有的字符的unicode表示，然后返回位一个数组。
+	// [72 101 108 108 111] 就是这个数组（slice）
+	src := []byte("Hello")
+	// 这个encodeStr 是什么呢？它其实就是把这个数组的所有的数字用16进制表示并且没有加[]而已，而是将这个串变成了字符串的形式储存
+	// 就是这个“48656c6c6f” 这个字符串其实还是unicode编码只是 用的16进制并且没有[]罢了，一定不要认为它就是"HELLO"
+	encodedStr := hex.EncodeToString(src)
+	fmt.Println(src)
+	// 48656c6c6f -> 48(4*16+8=72) 65(6*16+5=101) 6c 6c 6f
+	fmt.Println(encodedStr)
+	byteValue,_ := hex.DecodeString(encodeStr)
+	string(byteValue) == "Hello"
+```
