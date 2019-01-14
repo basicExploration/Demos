@@ -1,12 +1,11 @@
 package salt
 
 import (
-	"fmt"
+	"github.com/googege/goo"
 	"testing"
 )
 
-var e encryptValue
+
 func TestSalt(t *testing.T) {
-	e.saltMethod()
-	fmt.Println(e.salt)
+
 }
