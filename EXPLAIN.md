@@ -831,3 +831,21 @@ func tt6() ( int) {
 	byteValue,_ := hex.DecodeString(encodeStr)
 	string(byteValue) == "Hello"
 ```
+25. 关于json的一个解析的问题
+
+```json
+{"code":0,"data":{"ip":"173.82.115.125","country":"美国","area":"","region":"加利福尼亚","city":"洛杉矶","county":"XX","isp":"XX","country_id":"US","area_id":"","region_id":"US_104","city_id":"US_1018","county_id":"xx","isp_id":"xx"}}
+
+```
+```go
+type Data struct {
+	Data Values `json:"data"`
+}
+type Values struct {
+	Country string `json:"country"`
+	City    string `json:"city"`
+}
+
+```
+
+定义的时候可以缺少字段，但是，不能跟json字段的格式不符合，举个例子 这里的数据是 在json整个文件下的data对象中，那么你需要两个struct 一个是代表整个的json的数据，第二个struct是代表那个data，你看 那个code和其它字段没有定义吧，没有定义无所谓，但是字段的格式一定要遵守 如果直接把Values传进去就是错误的行为，是不会解析的。
