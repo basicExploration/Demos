@@ -1,4 +1,7 @@
 # Files
+
+## 有招人的吗? 应届，go后端web开发，目前 实习了大半年了，想正式工作，又招聘的，麻烦给我提出 issue 谢谢啦！！！！！！
+
 - [googege's blog](https://github.com/googege/blog)
 - [关于go语言的一些解释](https://github.com/googege/goFiles/tree/master/EXPLAIN.md)
 - [go语言demos](https://github.com/googege/goFiles/tree/master/godemo)
