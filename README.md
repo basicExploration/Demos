@@ -12,7 +12,7 @@
 - [计算机里的小技巧](https://github.com/googege/goFiles/tree/master/computergold.md)
 - [Docker入门](https://github.com/googege/goFiles/tree/master/docker/README.md)
 - [hello Dart](https://github.com/googege/goFiles/tree/master/helloDart/README.md)
-- [hello C](https://github.com/googege/helloC/tree/master/helloC/README.md)
+- [hello C](https://github.com/googege/tree/master/helloC/README.md)
 - [hello Python](https://github.com/googege/helloC/tree/master/helloC/README.md)
 - [hello ShellScript](https://github.com/googege/helloShellScript/tree/master/helloC/README.md)
 - [review JavaScript](https://github.com/googege/reviewJavaScript/tree/master/helloC/README.md)
