@@ -20,8 +20,8 @@
 ---
 ☕️如何真的对你有帮助，你可以请我喝杯咖啡，这样我就可以有精神了，多谢多谢~
 
-<img style="width:10px" src='https://raw.githubusercontent.com/googege/Files/master/a.jpeg'/>
-<img style="width:10px" src='https://raw.githubusercontent.com/googege/Files/master/c.jpeg'/>
+<img style="width:10px" src='https://raw.githubusercontent.com/googege/Files/master/a.png'/>
+<img style="width:10px" src='https://raw.githubusercontent.com/googege/Files/master/c.png'/>
 <img style="width:10px" src='https://raw.githubusercontent.com/googege/Files/master/b.png'/>
 
 ---
