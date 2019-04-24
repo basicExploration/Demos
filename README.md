@@ -13,7 +13,7 @@
 - [Docker入门](https://github.com/googege/Files/tree/master/docker/README.md)
 - [hello Dart](https://github.com/googege/Files/tree/master/helloDart/README.md)
 - [hello C](https://github.com/googege/Files/tree/master/helloC)
-- [hello Python](https://github.com/googege/Files/tree/master/helloPhthon)
+- [hello Python](https://github.com/googege/Files/tree/master/helloPython)
 - [hello ShellScript](https://github.com/googege/Files/tree/master/helloShellScript)
 - [review JavaScript](https://github.com/googege/Files/tree/master/reviewJavaScript)
 
