@@ -1,7 +1,6 @@
-# Files
-
-> 招人的给我发Email，多谢啦
-
+<div align="center">
+  <image src="./files.png"/>
+  </div>
 - [googege's blog](https://github.com/googege/blog)
 - [关于go语言的一些解释](https://github.com/googege/Files/tree/master/EXPLAIN.md)
 - [Go语言demos](https://github.com/googege/Files/tree/master/godemo)
