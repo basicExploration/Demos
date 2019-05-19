@@ -1,5 +1,5 @@
 <div align="center">
-  <image src="./files.png"/ width="210px">
+  <image src="./files-logo.png"/ width="310px">
   </div>
   
 - [googege's blog](https://github.com/googege/blog)
