@@ -2,7 +2,7 @@
   <image src="./files-logo.png"/ width="310px">
   </div>
   
-<br>
+<hr>
 
   
 - [googege's blog](https://github.com/googege/blog)
