@@ -5,7 +5,7 @@ package main
 
 import (
 	"fmt"
-	"golang.org/x/net/context"
+	"context"
 	"sync"
 	"time"
 )
@@ -14,14 +14,14 @@ func main() {
 	now := time.Now()
 	wait := new(sync.WaitGroup)
 	ctx, cal := context.WithDeadline(context.Background(), now.Add(time.Second*10))
-	context.WithValue(ctx, "key", "value")
+	ctx = context.WithValue(ctx, "key", "value")
 	defer cal()
 	wait.Add(1)
 	go func() {
 		defer wait.Done()
 		ctx1, call := context.WithDeadline(ctx, now.Add(time.Second*5))
 		defer call()
-		context.WithValue(ctx1, "kye1", "value2")
+		ctx1 = context.WithValue(ctx1, "key2", "value2")
 		for {
 			select {
 			case <-ctx.Done():
@@ -33,21 +33,23 @@ func main() {
 					for {
 						select {
 						case <-ctx1.Done():
-							fmt.Println("内部退出", ctx1.Value("key"), ctx1.Value("key1"))
+							fmt.Println("内部退出", ctx1.Value("key"), ctx1.Value("key2"))
 							return
 						default:
+							time.Sleep(time.Second)
 							fmt.Println("内部的内容》》》》")
 						}
 					}
 				}()
+				time.Sleep(time.Second)
 				fmt.Println("外部。")
 			}
-			select {
-			case <- time.After(time.Second*2):
-				fmt.Println("强制2秒后退出")
-				return
-
-			}
+			//select {
+			//case <- time.After(time.Second*6):
+			//	fmt.Println("强制2秒后退出")
+			//	return
+			//
+			//}
 		}
 	}()
 	wait.Wait()
