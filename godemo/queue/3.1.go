@@ -13,7 +13,7 @@ type node struct {
 }
 
 type linkedListQueue struct {
-	lock sync.Mutex
+	lock   sync.Mutex
 	Length int
 	head   *node //头节点
 	tail   *node //尾节点
@@ -27,6 +27,19 @@ func NewLinkListQueue() *linkedListQueue {
 	}
 }
 
+func (l *linkedListQueue) Traverse() []interface{} {
+	b := l.head
+	result := make([]interface{}, 0)
+	for {
+		result = append(result, b.Value)
+		b = b.Next
+		if b.Next == nil {
+			result = append(result,b.Value)
+			break
+		}
+	}
+	return result
+}
 func (l *linkedListQueue) Enqueue(v interface{}) {
 	l.lock.Lock()
 	defer l.lock.Unlock()
@@ -68,16 +81,7 @@ func main() {
 	lq.Enqueue(15)
 	lq.Enqueue(16)
 	lq.Enqueue(17)
-	fmt.Println(lq.Dequeue())
-	fmt.Println(lq.Dequeue())
-	fmt.Println(lq.Dequeue())
-	fmt.Println(lq.Dequeue())
-	fmt.Println(lq.Dequeue())
-	fmt.Println(lq.Dequeue())
-	fmt.Println(lq.Dequeue())
-	fmt.Println(lq.Dequeue())
-	fmt.Println(lq.Dequeue())
-	fmt.Println(lq.Dequeue())
+	lq.Dequeue()
+	fmt.Println(lq.Traverse())
 
 }
-
