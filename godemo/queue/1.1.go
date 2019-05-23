@@ -1,8 +1,9 @@
-// 顺序队列
-
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 func main() {
 	t := NewThing()
@@ -15,27 +16,28 @@ func main() {
 }
 
 type thing struct {
+	lock sync.Mutex
 	value []interface{}
 }
 
 func NewThing() *thing {
 	return &thing{
-		make([]interface{}, 0),
+		value:make([]interface{}, 0),
 	}
 }
 
 func (t *thing) In(v interface{}) {
+	t.lock.Lock()
+	defer t.lock.Unlock()
 	t.value = append(t.value, v)
 }
 
 func (t *thing) Out() interface{} {
+	t.lock.Lock()
+	defer t.lock.Unlock()
 	t.value = t.value[1:]
 	return t.value[0]
 }
-
-// 如何实现线程安全。
-
-//开始迭代
 
 
 
