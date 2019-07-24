@@ -1,10 +1,4 @@
-<div align="center">
-  <image src="./files-logo.png"/ width="310px">
-  </div>
-  
-<hr>
-
-  
+ 
 - [googege's blog](https://github.com/googege/blog)
 - [关于go语言的一些解释](https://github.com/googege/Files/tree/master/EXPLAIN.md)
 - [Go语言demos](https://github.com/googege/Files/tree/master/godemo)
